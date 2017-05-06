@@ -1,4 +1,5 @@
 import React from 'react';
+import Colors from '../constants/Colors';
 
 const Header = ({ way, date, from, to }) => (
   <div style={styles.container}>
@@ -19,11 +20,13 @@ const styles = {
     display: 'flex',
     maxWidth: '700px',
     width: '100%',
-    height: '40px',
+    height: '30px',
+    backgroundColor: Colors.gray,
   },
   direction: {
     width: '100px',
-    backgroundColor: 'lightblue',
+    backgroundColor: Colors.blue,
+    color: Colors.white,
     borderBottomRightRadius: '100px',
     borderTopRightRadius: '100px',
     display: 'flex',
@@ -35,7 +38,6 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: 'lightgray',
   },
   location: {
     fontWeight: 'bold',
