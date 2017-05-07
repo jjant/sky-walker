@@ -21,7 +21,7 @@ const OneWayFlight = ({ flight, airline, style }) => (
         arrivalTime={flight.arrivalTime}
       />
     </div>
-    <CostContainer price={flight.price}/>
+    <CostContainer flight={flight.id} price={flight.price}/>
   </div>
 );
 

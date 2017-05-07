@@ -71,3 +71,11 @@
   height: 50px;
   padding: 0 !important;
 }
+
+.sell-select {
+  padding: 10px 20px;
+  outline: none;
+  border-radius: 3px;
+  height: 40px;
+  border-color: gray;
+}
