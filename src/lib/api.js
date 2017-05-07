@@ -10,6 +10,23 @@ const api = {
             .then(resp => resp.json())
             .then(resp => formatFlights(resp.flights));
   },
+  validateCard(requiredParams, optionalParams = {}) {
+    const url = `${baseUrl}validatecreditcard`;
+    const params = {...requiredParams, ...optionalParams};
+    return fetch(urlForQuery(url, params))
+            .then(resp => resp.json())
+  },
+  getInstallments(requiredParams, optionalParams = {}) {
+    const url = `${baseUrl}getinstallments`;
+    const params = {...requiredParams, ...optionalParams};
+    return fetch(urlForQuery(url, params))
+            .then(resp => resp.json())
+  },
+  bookFlight(body = {}) {
+    const url = `${baseUrl}bookflight`;
+    return fetch(url, { method: 'POST', headers: {'Content-Type' : 'application/json'}, body: JSON.stringify(body)})
+            .then(resp => resp.json())
+  },
   getCities() {
     const url = `http://hci.it.itba.edu.ar/v1/api/geo.groovy?method=getcities`;
     const params = { pageSize: 1000 };
