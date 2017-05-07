@@ -1,20 +1,20 @@
 import React from 'react';
+import Slider, { Range } from 'rc-slider';
+import 'rc-slider/assets/index.css';
 import Colors from '../constants/Colors';
-import FilterCheckBox from './FilterCheckBox';
 
-const renderOptions = (options) => (
-  options.map(option => (
-    <div style={styles.option}>
-      <FilterCheckBox />
-      <label>{option}</label>
-    </div>
-  ))
-);
-
-const Filter = ({ headerName, options }) => (
+const PriceFilter = () => (
   <div style={styles.container}>
-    <h2 style={styles.header}>{headerName}</h2>
-    {renderOptions(options)}
+    <h2 style={styles.header}>Precio</h2>
+    <Range
+      min={0}
+      max={2000}
+      defaultValue={[10, 1000]}
+      step={40}
+      marks={{1: 'asda'}}
+      style={{}}
+      pushable
+    />
   </div>
 );
 
@@ -40,4 +40,4 @@ const styles = {
   },
 };
 
-export default Filter;
+export default PriceFilter;
