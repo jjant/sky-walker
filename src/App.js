@@ -7,7 +7,7 @@ import {
 import './App.css';
 import Search from './search/Search';
 import Header from './layout/Header';
-import Home from './layout/Home';
+import Home from './home/Home';
 import NotFound from './not_found/NotFound';
 
 class App extends Component {
