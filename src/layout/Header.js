@@ -1,12 +1,15 @@
 import React from 'react';
 import Colors from '../constants/Colors';
+import { Link } from 'react-router-dom';
 
 const Header = () => (
   <div style={styles.container}>
-    <div style={styles.logo}>
-      <h2 style={styles.sky}>Sky</h2>
-      <h2 style={styles.walker}>Walker</h2>
-    </div>
+    <Link to="/" style={styles.logoLink}>
+      <div style={styles.logo}>
+        <h2 style={styles.sky}>Sky</h2>
+        <h2 style={styles.walker}>Walker</h2>
+      </div>
+    </Link>
   </div>
 );
 
@@ -17,9 +20,12 @@ const styles = {
     background: Colors.pink,
     display: 'flex',
     alignItems: 'center',
-    padding: '0 30px',
+  },
+  logoLink: {
+    textDecoration: 'none',
   },
   logo: {
+    marginLeft: '30px',
     display: 'flex',
     fontSize: '27px',
   },

@@ -14,7 +14,6 @@ const FlightList = ({ flights }) => (
 const styles = {
   container: {
     display: 'inline-flex',
-    margin: '0 auto',
     padding: '0',
     flexDirection: 'column',
   },

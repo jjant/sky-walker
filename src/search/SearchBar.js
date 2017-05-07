@@ -20,6 +20,7 @@ const styles = {
     borderColor: Colors.gray,
     borderTop: '0',
     width: '300px',
+    marginRight: '100px',
   },
 };
 

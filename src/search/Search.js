@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import FlightList from './FlightList';
 import SearchBar from './SearchBar';
 
@@ -38,10 +37,10 @@ class Search extends Component {
 const styles = {
   container: {
     display: 'flex',
-    border: '1px solid black',
     width: '100%',
     maxWidth: '1400px',
-    margin: '0 auto',
+    margin: '55px auto 0',
+    justifyContent: 'center',
   },
 };
 
