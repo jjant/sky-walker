@@ -5,3 +5,44 @@
 .rc-slider-track.rc-slider-track-1 {
   background: #FF3F61;
 }
+
+*::placeholder {
+  color: #AAAAAA;
+}
+/* airbnb-dates overrides */
+
+.DateInput__display-text--focused {
+  background: rgba(255, 63, 97, 0.2) !important;
+}
+
+.DateInput {
+  text-align: left !important;
+  font-weight: normal !important;
+  font-size: 15px !important;
+  color: #AAAAAA !important;
+}
+
+/* react-select overrides */
+.Select-input {
+  width: 163px;
+  height: 50px !important;
+  padding: 0 !important;
+}
+
+.Select-value {
+  line-height: 50px !important;
+}
+
+.Select-multi-value-wrapper {
+  text-align: left;
+}
+
+.Select-placeholder {
+  line-height: 50px !important;
+}
+
+.Select-input > input {
+  width: 100% !important;
+  height: 50px;
+  padding: 0 !important;
+}

@@ -10,7 +10,12 @@ const api = {
     return fetch(urlForQuery(url, params))
             .then(resp => resp.json())
             .then(resp => formatFlights(resp.flights));
-  }
+  },
+  getCities() {
+    const url = `http://hci.it.itba.edu.ar/v1/api/geo.groovy?method=getcities`;
+    const params = { pageSize: 1000 };
+    return fetch(urlForQuery(url, params)).then(resp => resp.json());
+  },
 };
 
 function formatFlights(flights) {

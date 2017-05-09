@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Header from './Header';
 import SearchBar from './SearchBar';
 
@@ -8,6 +7,7 @@ const Home = () => (
     <img
       src={require('../../assets/banner.png')}
       style={styles.backgroundImage}
+      alt="Ciudad de España"
     />
     <div style={styles.barWrapper}>
       <SearchBar />

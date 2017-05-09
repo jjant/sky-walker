@@ -1,13 +1,20 @@
 import React from 'react';
 import Colors from '../constants/Colors';
 import { Link } from 'react-router-dom';
+import CitySelect from './CitySelect';
+import FlightDatePicker from './FlightDatePicker';
 
 const SearchBar = () => (
   <div style={styles.container}>
-    <input style={{...styles.searchField, ...styles.largeField}} type="text" placeholder="Buenos Aires (EZE)"/>
-    <input style={{...styles.searchField, ...styles.largeField}} type="text" placeholder="Destino"/>
-    <input style={{...styles.searchField, ...styles.mediumField}} type="text" placeholder="Ida"/>
-    <input style={{...styles.searchField, ...styles.mediumField}} type="text" placeholder="Vuelta"/>
+    <CitySelect
+      placeholder="Origen"
+      style={{...styles.searchField, ...styles.largeField}}
+    />
+    <CitySelect
+      placeholder="Destino"
+      style={{...styles.searchField, ...styles.largeField}}
+    />
+    <FlightDatePicker />
     <input style={{...styles.searchField, ...styles.smallField}} type="text" placeholder="Num"/>
     <input style={{...styles.searchField, ...styles.smallField, ...styles.lastField}} type="text" placeholder="Tipo"/>
     <Link to="/search">

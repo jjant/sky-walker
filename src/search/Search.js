@@ -1,32 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import FlightList from './FlightList';
 import SearchBar from './SearchBar';
 import api from '../lib/api';
 
-const exampleFlight = {
-  ida: {
-    way: 'Ida',
-    date: 'Jue 20 Mar. 2017',
-    from: 'Buenos Aires (EZE)',
-    to: 'Bangkok (BKK)'
-  },
-  vuelta: {
-    way: 'Vuelta',
-    date: 'Jue 20 Mar. 2017',
-    from: 'Buenos Aires (EZE)',
-    to: 'Bangkok (BKK)'
-  },
-};
-
-const flights = [
-  exampleFlight,
-  exampleFlight,
-  exampleFlight
-];
-
 class Search extends Component {
   state = {
-    flights,
     from: "BUE",
     to: "TUC",
     dep_date: "2017-12-25",
@@ -47,11 +26,10 @@ class Search extends Component {
   }
 
   render() {
-    this.getFlights();
     return (
       <div style={styles.container}>
         <SearchBar />
-        <FlightList flights={this.state.flights} />
+        <FlightList flights={this.props.flights} />
       </div>
     );
   }
@@ -67,4 +45,4 @@ const styles = {
   },
 };
 
-export default Search;
+export default connect(state => ({ flights: state.flights }))(Search);
