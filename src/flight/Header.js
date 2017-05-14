@@ -1,19 +1,26 @@
 import React from 'react';
+import moment from 'moment';
 import Colors from '../constants/Colors';
 
-const Header = ({ way, date, from, to }) => (
-  <div style={styles.container}>
+const formatCityName = (cityName, airportName) => `${cityName.split(',')[0]} (${airportName.id})`;
+
+const Header = ({ date, departureCity, departureAirport, arrivalCity, arrivalAirport }) => {
+  return <div style={styles.container}>
     <div style={styles.direction}>
       <span>img </span>
-      <span>{way}</span>
+      <span>ida</span>
     </div>
     <div style={styles.flightInformation}>
-      <span>{date}</span>
-      <span style={styles.location}>{from}</span>
-      <span style={styles.location}>{to}</span>
+      <span>{moment(date).format('DD/MM/YYYY')}</span>
+      <span style={styles.location}>
+        {formatCityName(departureCity.name, departureAirport)}
+      </span>
+      <span style={styles.location}>
+        {formatCityName(arrivalCity.name, arrivalAirport)}
+      </span>
     </div>
   </div>
-);
+};
 
 const styles = {
   container: {

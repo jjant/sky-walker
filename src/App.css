@@ -7,12 +7,21 @@
 }
 
 *::placeholder {
-  color: #AAAAAA;
+  color: rgba(170, 170, 170, 0.5) !important;
 }
+
+/* Make home background responsive */
+
+@media (max-width: 1400px) {
+  .main-background-image {
+    width: 160% !important;
+  }
+}
+
 /* airbnb-dates overrides */
 
 .DateInput__display-text--focused {
-  background: rgba(255, 63, 97, 0.2) !important;
+  /*background: rgba(255, 63, 97, 0.2) !important;*/
 }
 
 .DateInput {
@@ -20,6 +29,15 @@
   font-weight: normal !important;
   font-size: 15px !important;
   color: #AAAAAA !important;
+}
+
+.SingleDatePicker {
+  border-right: 1px solid grey;
+}
+
+.SingleDatePickerInput {
+  border: 0 !important;
+  height: 50px;
 }
 
 /* react-select overrides */
@@ -33,6 +51,12 @@
   line-height: 50px !important;
 }
 
+.Select-value-label {
+  display: block;
+  overflow: hidden;
+  width: 160px;
+  text-overflow: ellipsis;
+}
 .Select-multi-value-wrapper {
   text-align: left;
 }

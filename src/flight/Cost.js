@@ -15,8 +15,8 @@ const Cost = ({ price }) => (
   </div>
 );
 
-const width = '195px';
-const height = '175px';
+const width = '175px';
+const height = '155px';
 const styles = {
   container: {
     width,

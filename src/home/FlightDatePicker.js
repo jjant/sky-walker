@@ -1,39 +1,34 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { SingleDatePicker } from 'react-dates';
 import moment from 'moment';
+import { changeSearchBarValue } from '../actions/flightsActions';
 
-class FlightDatePicker extends Component {
-  static defaultProps = {
-    placeholder: "Fecha de ida",
-    numberOfMonths: 1,
-    hideKeyboardShortcutsPanel: true,
-    displayFormat: "DD/MM/YYYY",
-  }
+const FlightDatePicker = (props) => (
+  <SingleDatePicker
+    hideKeyboardShortcutsPanel={props.hideKeyboardShortcutsPanel}
+    displayFormat={props.displayFormat}
+    placeholder={props.placeholder}
+    numberOfMonths={props.numberOfMonths}
+    date={moment(props.flightParams.dep_date)}
+    onDateChange={dep_date => {
+      props.dispatch(changeSearchBarValue({ dep_date: dep_date.format('YYYY-MM-DD')}));
+    }}
+    focused={props.flightParams.focused}
+    onFocusChange={focused => props.dispatch(changeSearchBarValue(focused))}
+  />
+);
 
-  state = {
-    date: null,
-    focused: false,
-  }
+FlightDatePicker.defaultProps = {
+  placeholder: "Fecha de ida",
+  numberOfMonths: 1,
+  hideKeyboardShortcutsPanel: true,
+  displayFormat: "DD/MM/YYYY",
+};
 
-  onDateChange(date) {
-    this.setState({ date });
-  }
+const mapStateToProps = (state) => ({
+  flightParams: state.flights.flightParams,
+});
 
-  onFocusChange({ focused }) {
-    this.setState({ focused });
-  }
-
-  render() {
-    return (
-      <SingleDatePicker
-        {...this.props}
-        date={this.state.date}
-        onDateChange={date => this.onDateChange(date)}
-        focused={this.state.focused}
-        onFocusChange={focused => this.onFocusChange(focused)}
-      />
-    );
-  }
-}
-export default FlightDatePicker;
+export default connect(mapStateToProps)(FlightDatePicker);

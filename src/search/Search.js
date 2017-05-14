@@ -2,34 +2,26 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FlightList from './FlightList';
 import SearchBar from './SearchBar';
-import api from '../lib/api';
+import SearchSpinner from './SearchSpinner';
+import { fetchFlights } from '../actions/flightsActions';
+
 
 class Search extends Component {
-  state = {
-    from: "BUE",
-    to: "TUC",
-    dep_date: "2017-12-25",
-  };
+  componentWillMount() {
+    this.props.dispatch(fetchFlights(this.props.flightParams));
+  }
 
-  getFlights() {
-    const params = {
-      to: this.state.to,
-      from: this.state.from,
-      dep_date: this.state.dep_date,
-      adults: 1,
-      children: 0,
-      infants: 0,
-    };
-    const flightsPromise = api.getOneWayFlights(params);
-    flightsPromise.then(resp => this.setState(() => ({ flights: resp })));
-    flightsPromise.then(resp => window.flights = resp);
+  renderFlightList() {
+    if (this.props.fetching || !this.props.flights)
+      return <SearchSpinner />;
+    return <FlightList flights={this.props.flights} />;
   }
 
   render() {
     return (
       <div style={styles.container}>
         <SearchBar />
-        <FlightList flights={this.props.flights} />
+        {this.renderFlightList()}
       </div>
     );
   }
@@ -45,4 +37,10 @@ const styles = {
   },
 };
 
-export default connect(state => ({ flights: state.flights }))(Search);
+const mapStateToProps = (state) => ({
+  fetching: state.flights.fetching,
+  flightParams: state.flights.flightParams,
+  flights: state.flights.flights,
+});
+
+export default connect(mapStateToProps)(Search);

@@ -1,9 +1,12 @@
 import React from 'react';
 import Flight from '../flight/Flight';
+import OneWayFlight from '../flight/OneWayFlight';
 
-const renderFlights = (flights) => (
-  flights.map((flight, i) => <Flight {...flight} key={i} style={styles.children}/>)
-);
+const renderFlights = (flights) => {
+  return flights.map((flight) =>
+    <OneWayFlight {...flight} key={flight.id} style={styles.children}/>
+  );
+};
 
 const FlightList = ({ flights }) => (
   <div style={styles.container}>

@@ -11,7 +11,7 @@ const filters = [
 
 const SearchBar = () => (
   <div style={styles.container}>
-    {filters.map(filter => <Filter {...filter} />)}
+    {filters.map(filter => <Filter {...filter} key={filter.headerName} />)}
     <PriceFilter />
   </div>
 );

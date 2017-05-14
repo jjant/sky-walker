@@ -8,6 +8,7 @@ const Home = () => (
       src={require('../../assets/banner.png')}
       style={styles.backgroundImage}
       alt="Ciudad de España"
+      className="main-background-image"
     />
     <div style={styles.barWrapper}>
       <SearchBar />

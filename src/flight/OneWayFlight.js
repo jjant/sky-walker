@@ -5,33 +5,29 @@ import Body from './Body';
 import Cost from './Cost';
 import Colors from '../constants/Colors';
 
-const Flight = ({ ida, vuelta, style }) => (
+const OneWayFlight = ({ departureCity, departureAirport, arrivalCity, arrivalAirport, departureTime, arrivalTime, style }) => (
   <div style={{...style, ...styles.container}}>
     <div style={styles.mainInformation}>
-      <Header {...ida}/>
-      <Body />
-      <Header {...vuelta}/>
-      <Body />
+      <Header
+        date={departureTime}
+        departureCity={departureCity}
+        arrivalCity={arrivalCity}
+        departureAirport={departureAirport}
+        arrivalAirport={arrivalAirport}
+      />
+      <Body
+        departureTime={departureTime}
+        arrivalTime={arrivalTime}
+      />
     </div>
-    <Cost price={1232}/>
+    <Cost price={100}/>
   </div>
 );
-
-const idaVueltaProptypes = PropTypes.shape({
-  way: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-  from: PropTypes.string.isRequired,
-  to: PropTypes.string.isRequired,
-}).isRequired;
-
-Flight.propTypes = {
-  ida: idaVueltaProptypes,
-  vuelta: idaVueltaProptypes,
-};
 
 const styles = {
   container: {
     backgroundColor: 'white',
+    width: '846px',
     display: 'flex',
     border: '2px solid',
     borderColor: Colors.gray,
@@ -47,4 +43,4 @@ const styles = {
   },
 };
 
-export default Flight;
+export default OneWayFlight;

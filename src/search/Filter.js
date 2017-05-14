@@ -4,7 +4,7 @@ import FilterCheckBox from './FilterCheckBox';
 
 const renderOptions = (options) => (
   options.map(option => (
-    <div style={styles.option}>
+    <div style={styles.option} key={option}>
       <FilterCheckBox />
       <label>{option}</label>
     </div>

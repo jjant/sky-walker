@@ -13,16 +13,14 @@ import NotFound from './not_found/NotFound';
 class App extends Component {
   render() {
     return (
-      <Router>
-        <div className="App">
-            <Header />
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/search" component={Search} />
-              <Route component={NotFound} />
-            </Switch>
-        </div>
-      </Router>
+      <div className="App">
+          <Header />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/search" component={Search} />
+            <Route component={NotFound} />
+          </Switch>
+      </div>
     );
   }
 }

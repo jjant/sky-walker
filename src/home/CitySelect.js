@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import Colors from '../constants/Colors';
 import { Link } from 'react-router-dom';
+import { changeSearchBarValue } from '../actions/flightsActions';
 import api from '../lib/api';
 
 class CitySelect extends Component {
@@ -28,15 +30,24 @@ class CitySelect extends Component {
     this.setState(() => ({ value: newValue }));
   }
 
+  getValue() {
+    return this.props.flightParams[this.props.name];
+  }
+
+  onChange(newValue) {
+    const value = newValue ? newValue.value : '';
+    return this.props.dispatch(changeSearchBarValue({ [this.props.name]: value }));
+  }
+
   render() {
     return (
       <Select
-        name="form-field-name"
-        value={this.state.value}
+        name={this.props.name}
+        value={this.getValue()}
         style={{...this.props.style, ...styles.select}}
         placeholder={this.props.placeholder}
         options={this.state.options}
-        onChange={(newValue) => this.updateValue(newValue)}
+        onChange={(newValue) => this.onChange(newValue)}
       />
     );
   }
@@ -48,4 +59,8 @@ const styles = {
   },
 };
 
-export default CitySelect;
+const mapStateToProps = (state) => ({
+  flightParams: state.flights.flightParams,
+});
+
+export default connect(mapStateToProps)(CitySelect);

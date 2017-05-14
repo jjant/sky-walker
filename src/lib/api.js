@@ -5,7 +5,6 @@ const baseUrl = 'http://hci.it.itba.edu.ar/v1/api/booking.groovy?method=';
 const api = {
   getOneWayFlights(requiredParams, optionalParams = {}) {
     const url = `${baseUrl}getonewayflights`;
-    // const { from, to, dep_date, adults, children, infants }
     const params = {...requiredParams, ...optionalParams};
     return fetch(urlForQuery(url, params))
             .then(resp => resp.json())
@@ -50,6 +49,7 @@ function formatFlight(flight) {
     arrivalTime: segment.arrival.date,
     arrivalAirport,
     arrivalCity,
+    departureTime: segment.departure.date,
     departureAirport,
     departureCity,
   };
@@ -67,4 +67,5 @@ function queryParams(params) {
 
 window.api = api;
 window.moment = moment;
+
 export default api;

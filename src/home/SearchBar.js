@@ -3,20 +3,36 @@ import Colors from '../constants/Colors';
 import { Link } from 'react-router-dom';
 import CitySelect from './CitySelect';
 import FlightDatePicker from './FlightDatePicker';
+import SeatCountField from './SeatCountField';
 
+const renderSeatCountFields = () => {
+  const fieldNames = ['adults', 'children', 'infants'];
+  const fieldPlaceholders = ['Adultos', 'Niños', 'Infantes'];
+  return fieldNames.map((field, index) => {
+    return (
+      <SeatCountField
+        style={styles.searchField}
+        placeholder={fieldPlaceholders[index]}
+        name={field}
+        last={index === fieldNames.length - 1}
+      />
+    );
+  });
+};
 const SearchBar = () => (
   <div style={styles.container}>
     <CitySelect
+      name="from"
       placeholder="Origen"
       style={{...styles.searchField, ...styles.largeField}}
     />
     <CitySelect
+      name="to"
       placeholder="Destino"
       style={{...styles.searchField, ...styles.largeField}}
     />
     <FlightDatePicker />
-    <input style={{...styles.searchField, ...styles.smallField}} type="text" placeholder="Num"/>
-    <input style={{...styles.searchField, ...styles.smallField, ...styles.lastField}} type="text" placeholder="Tipo"/>
+    {renderSeatCountFields()}
     <Link to="/search">
       <button style={styles.button} type="button" >Buscar</button>
     </Link>
@@ -37,17 +53,11 @@ const styles = {
     backgroundColor: Colors.white,
     height: '50px',
   },
-  smallField: {
-    width: '60px',
-  },
   mediumField: {
     width: '140px',
   },
   largeField: {
     width: '200px',
-  },
-  lastField: {
-    borderRight: '0',
   },
   button: {
     border: 'none',
