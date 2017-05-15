@@ -15,6 +15,11 @@ const api = {
     const params = { pageSize: 1000 };
     return fetch(urlForQuery(url, params)).then(resp => resp.json());
   },
+  getAirlines() {
+    const url = `http://hci.it.itba.edu.ar/v1/api/misc.groovy?method=getairlines`;
+    const params = { pageSize: 10000 };
+    return fetch(urlForQuery(url, params)).then(resp => resp.json()).then(data => data.airlines);
+  },
 };
 
 function formatFlights(flights) {
@@ -43,7 +48,13 @@ function formatFlight(flight) {
   };
   return {
     id: segment.id,
-    price: flight.price.total.total,
+    price: {
+      charges: flight.price.total.charges,
+      fare: flight.price.total.fare,
+      taxes: flight.price.total.taxes,
+      total: flight.price.total.total,
+    },
+    airlineId: segment.airline.id,
     duration: flight.outbound_routes[0].duration,
     cabinType: segment.cabin_type,
     arrivalTime: segment.arrival.date,

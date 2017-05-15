@@ -8,6 +8,8 @@ function flightsReducer(state = initialFlightsState, action) {
       return { ...state, flights: action.payload, fetching: false };
     case actions.CHANGE_SEARCH_BAR_VALUE:
       return { ...state, flightParams: { ...state.flightParams, ...action.payload } };
+    case actions.FETCH_AIRLINES_SUCESS:
+      return { ...state, airlines: action.payload };
     default:
       return state;
   }
@@ -15,7 +17,13 @@ function flightsReducer(state = initialFlightsState, action) {
 
 const exampleFlight = {
   id: 1,
-  price: 100,
+  price: {
+    charges: 130,
+    fare: 130,
+    taxes: 130,
+    total: 100,
+  },
+  airlineId: "8R",
   duration: '10:33',
   cabinType: 'Economica',
   arrivalTime: '10:22',
@@ -36,6 +44,8 @@ const initialFlightsState = {
     children: 0,
     infants: 0,
     focused: false,
+    sort_key: '',
+    sort_order: '',
   },
   flights: [exampleFlight],
 };

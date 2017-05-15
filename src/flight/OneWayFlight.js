@@ -2,25 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Header from './Header';
 import Body from './Body';
-import Cost from './Cost';
+import CostContainer from './CostContainer';
 import Colors from '../constants/Colors';
 
-const OneWayFlight = ({ departureCity, departureAirport, arrivalCity, arrivalAirport, departureTime, arrivalTime, style }) => (
+const OneWayFlight = ({ flight, airline, style }) => (
   <div style={{...style, ...styles.container}}>
     <div style={styles.mainInformation}>
       <Header
-        date={departureTime}
-        departureCity={departureCity}
-        arrivalCity={arrivalCity}
-        departureAirport={departureAirport}
-        arrivalAirport={arrivalAirport}
+        date={flight.departureTime}
+        departureCity={flight.departureCity}
+        arrivalCity={flight.arrivalCity}
+        departureAirport={flight.departureAirport}
+        arrivalAirport={flight.arrivalAirport}
       />
       <Body
-        departureTime={departureTime}
-        arrivalTime={arrivalTime}
+        airline={airline}
+        departureTime={flight.departureTime}
+        arrivalTime={flight.arrivalTime}
       />
     </div>
-    <Cost price={100}/>
+    <CostContainer price={flight.price}/>
   </div>
 );
 
@@ -36,7 +37,6 @@ const styles = {
     flex: '1',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-around',
     padding: '10px 20px',
     borderRight: '2px solid',
     borderColor: Colors.gray,
