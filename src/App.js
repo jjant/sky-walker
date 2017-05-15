@@ -7,6 +7,7 @@ import {
 import './App.css';
 import Search from './search/Search';
 import Sell from './sell/Sell';
+import Success from './sell/Success';
 import Header from './layout/Header';
 import Home from './home/Home';
 import NotFound from './not_found/NotFound';
@@ -39,6 +40,7 @@ class App extends Component {
               <Route exact path="/" component={Home} />
               <Route path="/search" component={Search} />
               <Route path="/sell" component={Sell} />
+              <Route path="/success" component={Success} />
               <Route component={NotFound} />
             </Switch>
         </div>

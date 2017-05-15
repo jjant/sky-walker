@@ -34,9 +34,11 @@ export default class Input extends React.Component {
     const props = {...this.props};
     delete props.validation;
     delete props.errorMessage;
+    delete props.children;
     return (
       <div>
-        <input {...props} onError={(ev) => ev.target.value ? this.setState({ error: true }) : null } onChange={ this._updateField } />
+        { this.props.children }
+        <input {...props} onError={(ev) => ev.target.value ? this.setState({ error: true }) : null } onChange={ this._updateField }/>
         { this.state.error ? <div style={styles.error}><span>{this.props.errorMessage || "El campo es incorrecto"}</span></div> : null } 
       </div>
     )

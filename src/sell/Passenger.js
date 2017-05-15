@@ -32,12 +32,12 @@ export default class Sell extends Component {
     </div>,
     <div key="document" style={styles.fieldset}>
       <label style={styles.label} htmlFor="">Tipo y número de documento</label>
-      <select style={styles.selectDoc} onChange={ this._updatePassenger.bind(this) } name="id_type">
-        <option value="1">DNI</option>
-        <option value="2">PASAPORTE</option>
-      </select>
-      <input tabIndex={4 + this.props.index * 4} maxLength="8" value={ this.props.passenger.id_number instanceof ErrorCustom ? '' : this.props.passenger.id_number } required style={styles.inputDoc} onChange={ this._updatePassenger.bind(this) } name="id_number" type="text"/>
-      { this.props.passenger.id_number instanceof ErrorCustom ? <div style={styles.error}><span>El campo es incorrecto</span></div> : null } 
+      <Input validation={(text) => text ? new RegExp('^[0-9]+$').test(text) : true} minLength="2" errorMessage="Solo se permiten números" tabIndex={4 + this.props.index * 4} maxLength="8" value={ this.props.passenger.id_number } required onChange={ this._updatePassenger.bind(this) } name="id_number" style={{...styles.inputDoc, width: '80%', borderLeft: 'none', borderTopLeftRadius: 0, borderBottomLeftRadius: 0}} type="text">
+        <select style={styles.selectDoc} onChange={ this._updatePassenger.bind(this) } name="id_type">
+          <option value="1">DNI</option>
+          <option value="2">PASAPORTE</option>
+        </select>
+      </Input>
     </div>]);
     return (
       <div style={styles.container}>

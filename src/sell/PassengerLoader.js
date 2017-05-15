@@ -4,6 +4,7 @@ import Passenger from './Passenger'
 import { connect } from 'react-redux';
 import ErrorCustom from './Error'
 import { submitPassengers, newPassengers } from '../actions/bookActions';
+import moment from 'moment';
 
 
 class PassengerLoader extends Component {
@@ -47,6 +48,23 @@ class PassengerLoader extends Component {
       this.props.dispatch(submitPassengers(passengers));
       return;
     }
+
+    const ages = {
+      adults: 0,
+      children: 0,
+      infants: 0,
+    }
+
+    this.props.passengers.forEach((passenger) => {
+      const age = moment().diff(passenger.birthdate, 'years');
+      console.log(age);
+      if (age >= 18) ages.adults++;
+      else if (age >= 11) ages.children++;
+      else ages.infants++;
+    });
+
+    const hasBadAges = Object.keys(ages).find((field) => ages[field] != this.props.flightsParams[field]);
+    if (hasBadAges) return console.log('Las edades de los pasajeros cargados, no se corresponde con la de los pasajes que quiere sacar. Compruebe sus ' + hasBadAges);
 
     this.props.dispatch(submitPassengers(this.props.passengers));
     this.props.nextStep();
