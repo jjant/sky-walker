@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import ErrorCustom from './Error'
 import { submitPayment } from '../actions/bookActions';
 import api from '../lib/api';
+import countries from '../../public/countries.json';
 
 class BillingLoader extends Component {
   constructor(props) {
@@ -13,15 +14,8 @@ class BillingLoader extends Component {
     this.state = { payment: this.props.payment || {}, regions: [] };
   }
 
-  async componentWillMount() {
-    const response = await fetch('https://raw.githubusercontent.com/benkeen/country-region-data/master/data.json', {
-      method: 'get'
-    });
-
-    if (!response.ok) console.error('No hay internet');
-
-    const regions = await response.json();
-    this.setState({ payment: this.state.payment, regions });
+  componentWillMount() {
+    this.setState({ payment: this.state.payment, regions: countries });
   }
 
   _submit = async () => {

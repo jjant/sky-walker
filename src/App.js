@@ -12,6 +12,10 @@ import Header from './layout/Header';
 import Home from './home/Home';
 import NotFound from './not_found/NotFound';
 
+import Alert from 'react-s-alert';
+import 'react-s-alert/dist/s-alert-default.css';
+import 'react-s-alert/dist/s-alert-css-effects/slide.css';
+
 class App extends Component {
 
 
@@ -43,6 +47,7 @@ class App extends Component {
               <Route path="/success" component={Success} />
               <Route component={NotFound} />
             </Switch>
+            <Alert stack={{limit: 1}} />
         </div>
       </Router>
     );

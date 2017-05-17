@@ -3,10 +3,10 @@ import Colors from '../constants/Colors';
 import Cost from './Cost';
 import Buy from './Buy';
 
-const CostContainer = ({ flightId, price }) => (
+const CostContainer = ({ flight, price }) => (
   <div style={styles.container}>
     <Cost price={price} />
-    <Buy flight={flightId} />
+    <Buy flight={flight} />
   </div>
 );
 
