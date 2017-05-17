@@ -32,8 +32,8 @@ export default class Sell extends Component {
     </div>,
     <div key="document" style={styles.fieldset}>
       <label style={styles.label} htmlFor="">Tipo y número de documento</label>
-      <Input validation={(text) => text ? new RegExp('^[0-9]+$').test(text) : true} minLength="2" errorMessage="Solo se permiten números" tabIndex={4 + this.props.index * 4} maxLength="8" value={ this.props.passenger.id_number } required onChange={ this._updatePassenger.bind(this) } name="id_number" style={{...styles.inputDoc, width: '80%', borderLeft: 'none', borderTopLeftRadius: 0, borderBottomLeftRadius: 0}} type="text">
-        <select style={styles.selectDoc} onChange={ this._updatePassenger.bind(this) } name="id_type">
+      <Input validation={(text) => text ? new RegExp('^[0-9]+$').test(text) : true} minLength="2" errorMessage="Solo se permiten números" tabIndex={5 + this.props.index * 4} maxLength="8" value={ this.props.passenger.id_number } required onChange={ this._updatePassenger.bind(this) } name="id_number" style={{...styles.inputDoc, width: '80%', borderLeft: 'none', borderTopLeftRadius: 0, borderBottomLeftRadius: 0}} type="text">
+        <select tabIndex={4 + this.props.index * 4} style={styles.selectDoc} onChange={ this._updatePassenger.bind(this) } name="id_type">
           <option value="1">DNI</option>
           <option value="2">PASAPORTE</option>
         </select>
@@ -79,7 +79,6 @@ const styles = {
   selectDoc: {
     width: '20%',
     height: 37,
-    outline: 'none',
   },
   inputDoc: {
     width: '80%',

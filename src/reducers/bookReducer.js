@@ -19,7 +19,7 @@ function bookReducer(state = initialBookState, action) {
 
 const initialBookState = {
   payment: {},
-  passengers: [{ id_type: '1' }],
+  passengers: [],
 };
 
 export default bookReducer;

@@ -101,7 +101,7 @@ class Success extends Component {
         </div>
 
         <Link to="/">
-          <button style={styles.button}>BUSCÁ NUEVOS DESTINOS</button>        
+          <button style={styles.button}>DESCUBRÍ NUEVOS DESTINOS</button>        
         </Link>
       </div>
     );
