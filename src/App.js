@@ -4,18 +4,14 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-import { connect } from 'react-redux';
 import './App.css';
 import Search from './search/Search';
 import Header from './layout/Header';
 import Home from './home/Home';
 import NotFound from './not_found/NotFound';
-import { fetchAirlines } from './actions/flightsActions';
 
 class App extends Component {
-  componentWillMount() {
-    this.props.dispatch(fetchAirlines());
-  }
+
 
   render() {
     return (
@@ -31,4 +27,5 @@ class App extends Component {
   }
 }
 
-export default connect()(App);
+// export default connect()(App);
+export default App;

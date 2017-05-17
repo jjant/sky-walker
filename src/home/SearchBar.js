@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import CitySelect from './CitySelect';
 import FlightDatePicker from './FlightDatePicker';
 import SeatCountField from './SeatCountField';
+import RoundTripCheckBox from './RoundTripCheckBox';
+import SearchBarLabels from './SearchBarLabels';
 
 const renderSeatCountFields = () => {
   const fieldNames = ['adults', 'children', 'infants'];
@@ -21,28 +23,48 @@ const renderSeatCountFields = () => {
 };
 const SearchBar = () => (
   <div style={styles.container}>
-    <CitySelect
-      name="from"
-      placeholder="Origen"
-      style={{...styles.searchField, ...styles.largeField}}
-    />
-    <CitySelect
-      name="to"
-      placeholder="Destino"
-      style={{...styles.searchField, ...styles.largeField}}
-    />
-    <FlightDatePicker />
-    {renderSeatCountFields()}
-    <Link to="/search">
-      <button style={styles.button} type="button" >Buscar</button>
-    </Link>
+    <SearchBarLabels />
+    <div style={styles.inputContainer}>
+      <CitySelect
+        name="from"
+        placeholder="Origen"
+        style={{...styles.searchField, ...styles.largeField}}
+      />
+      <CitySelect
+        name="to"
+        placeholder="Destino"
+        style={{...styles.searchField, ...styles.largeField}}
+      />
+      <FlightDatePicker />
+      {renderSeatCountFields()}
+      <Link to="/search">
+        <button style={styles.button} type="button" >Buscar</button>
+      </Link>
+    </div>
+    <div style={styles.roundTripContainer}>
+      <RoundTripCheckBox />
+    </div>
   </div>
 );
 
 const styles = {
   container: {
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    maxWidth: '1000px',
+    margin: '0 auto 100px',
+    height: '200px',
+    background: Colors.transparentLightBlue,
+  },
+  inputContainer: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    paddingTop: '10px',
   },
   searchField: {
     border: '0',
@@ -54,7 +76,7 @@ const styles = {
     height: '50px',
   },
   mediumField: {
-    width: '140px',
+    width: '147px',
   },
   largeField: {
     width: '200px',
@@ -67,6 +89,11 @@ const styles = {
     fontSize: '15px',
     color: 'white',
     cursor: 'pointer',
+  },
+  roundTripContainer: {
+    width: '905px',
+    marginTop: '15px',
+    textAlign: 'left',
   },
 };
 
