@@ -92,7 +92,7 @@ class Sell extends Component {
           <div><span style={{ fontSize: 30, fontWeight: '900' }}>{this.props.flightsParams.from} <img style={{ transform: 'rotate(90deg)', height: 30, verticalAlign: 'middle', display: 'inline-block'}} src={require('../../assets/plane-white.png')} alt=""/> {this.props.flightsParams.to}</span></div>
           <div><span>{ moment(this.props.flightsParams.dep_date).format('DD/MM/YYYY') } | { moment.locale('es') && moment(this.props.flightsParams.dep_date).fromNow()}</span></div>
           { this.state.step === 0 ? null : <div style={{ marginTop: 10, fontWeight: '900' }}>{ this.props.passengers.map((passenger, idx) => <span key={idx} style={{display: 'block'}}>{this.getPassengerData(passenger)}</span>) }</div> }
-          <div style={{ borderTop: `2px solid ${Colors.pink}`, width: '60%', margin: '0 auto', marginTop: 10, paddingTop: 10}}><span style={{ fontSize: 20, fontWeight: '900' }}>TOTAL: U$D {(this.props.flights.find((flight) => flight.id == this.props.flightId) || {}).price.total || ''}</span></div>
+          <div style={{ borderTop: `2px solid ${Colors.pink}`, width: '60%', margin: '0 auto', marginTop: 10, paddingTop: 10}}><span style={{ fontSize: 20, fontWeight: '900' }}>TOTAL: U$D {((this.props.flights.find((flight) => flight.id == this.props.flightId) || {}).price || {}).total || ''}</span></div>
         </div>
         { steps[this.state.step]  }
       </div>

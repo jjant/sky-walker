@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import ErrorCustom from './Error'
 import { submitPassengers, newPassengers } from '../actions/bookActions';
 import moment from 'moment';
-
+import Alert from 'react-s-alert';
 
 class PassengerLoader extends Component {
   constructor(props) {
@@ -55,6 +55,12 @@ class PassengerLoader extends Component {
       infants: 0,
     }
 
+    const langMap = {
+      adults: 'adultos',
+      children: 'niños',
+      infants: 'infantes',
+    }
+
     this.props.passengers.forEach((passenger) => {
       const age = moment().diff(passenger.birthdate, 'years');
       console.log(age);
@@ -64,7 +70,7 @@ class PassengerLoader extends Component {
     });
 
     const hasBadAges = Object.keys(ages).find((field) => ages[field] != this.props.flightsParams[field]);
-    if (hasBadAges) return console.log('Las edades de los pasajeros cargados, no se corresponde con la de los pasajes que quiere sacar. Compruebe sus ' + hasBadAges);
+    if (hasBadAges) return Alert.error('Las edades de los pasajeros cargados, no se corresponde con la de los pasajes que se quieren sacar. Compruebe la cantidad de ' + langMap[hasBadAges] + ' que cargó.')
 
     this.props.dispatch(submitPassengers(this.props.passengers));
     this.props.nextStep();
