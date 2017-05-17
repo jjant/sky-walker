@@ -3,7 +3,7 @@ import Colors from '../constants/Colors';
 import { Link } from 'react-router-dom';
 
 const Buy = ({ flight }) => (
-  <Link to={`/sell?id=${flight}`}>
+  <Link to={`/passengers?id=${flight}&clearPassengers=true`}>
     <button style={styles.button}>Comprar</button>
   </Link>
 );

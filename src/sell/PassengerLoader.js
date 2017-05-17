@@ -8,11 +8,6 @@ import moment from 'moment';
 import Alert from 'react-s-alert';
 
 class PassengerLoader extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   _updatePassengers = (passenger, idx) => {
     if (typeof idx === 'undefined') return this.props.dispatch(submitPassengers(passenger.concat([])));
     const passengers = this.props.passengers.concat([]);
@@ -72,6 +67,7 @@ class PassengerLoader extends Component {
     const hasBadAges = Object.keys(ages).find((field) => ages[field] != this.props.flightsParams[field]);
     if (hasBadAges) return Alert.error('Las edades de los pasajeros cargados, no se corresponde con la de los pasajes que se quieren sacar. Compruebe la cantidad de ' + langMap[hasBadAges] + ' que cargó.')
 
+    console.log(this.props.passengers);
     this.props.dispatch(submitPassengers(this.props.passengers));
     this.props.nextStep();
   }
