@@ -54,7 +54,7 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     flexWrap: 'wrap',
-    maxWidth: '1000px',
+    maxWidth: '1100px',
     margin: '0 auto 100px',
     height: '200px',
     background: Colors.transparentLightBlue,

@@ -14,6 +14,7 @@ const Home = () => (
     <div style={styles.barWrapper}>
       <SearchBar />
     </div>
+    <div style={styles.deals} />
   </div>
 );
 
@@ -25,12 +26,17 @@ const styles = {
     width: '100%',
     position: 'absolute',
     zIndex: '-1',
-    top: '-100%',
+    top: '-40%',
     left: '50%',
     transform: 'translateX(-50%)',
   },
   barWrapper: {
     marginTop: '200px',
+  },
+  deals: {
+    width: '100%',
+    height: '400px',
+    backgroundColor: 'lightBlue',
   },
 };
 

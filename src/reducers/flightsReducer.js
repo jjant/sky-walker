@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { actions } from '../actions/flightsActions';
 
 function flightsReducer(state = initialFlightsState, action) {
@@ -39,11 +40,13 @@ const initialFlightsState = {
   flightParams: {
     from: "BUE",
     to: "TUC",
-    dep_date: "2017-12-25",
+    dep_date: moment().format('YYYY-MM-DD'),
+    arr_date: moment().add(1, 'days').format('YYYY-MM-DD'),
     adults: 1,
     children: 0,
     infants: 0,
     focused: false,
+    inputFocused: 'START_DATE',
     sort_key: '',
     sort_order: '',
   },

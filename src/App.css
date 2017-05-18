@@ -41,6 +41,14 @@
   height: 50px;
 }
 
+.DateRangePickerInput {
+  width: 270px;
+}
+
+.DateRangePickerInput > .DateInput {
+  width: 100px;
+}
+
 /* react-select overrides */
 .Select-input {
   width: 163px;

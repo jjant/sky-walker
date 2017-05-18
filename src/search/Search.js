@@ -23,7 +23,7 @@ class Search extends Component {
       <div style={styles.container}>
         <SortBar />
         <div style={styles.flights}>
-          <SearchBar />
+          {/* <SearchBar /> */}
           {this.renderFlightList()}
         </div>
       </div>
@@ -43,7 +43,7 @@ const styles = {
     display: 'flex',
     width: '100%',
     maxWidth: '1300px',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
   },
 };
 
