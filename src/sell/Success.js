@@ -11,65 +11,13 @@ class Success extends Component {
   }
 
   componentWillMount() {
-    const flight = {
-      id: 94588,
-      price: 344.72,
-      rawPrice: {
-        adults: {
-          base_fare: 278,
-          quantity: 2
-        },
-        children: {
-          base_fare: 178,
-          quantity: 1
-        },
-        infants: {
-          base_fare: 27,
-          quantity: 3
-        },
-        total: {
-          charges: 11.12,
-          taxes: 55.6,
-          fare: 278,
-          total: 344.72
-        }
-      },
-      duration: '01:19',
-      cabinType: 'ECONOMY',
-      airline: {
-        id: '8R',
-        name: 'SOL',
-        rating: 4.8
-      },
-      arrivalTime: '2017-12-25 07:09:00',
-      arrivalAirport: {
-        id: 'TUC',
-        description: 'Aeropuerto Benjamin Matienzo, San Miguel de Tucuman, Argentina',
-        timeZone: '-03:00'
-      },
-      arrivalCity: {
-        id: 'TUC',
-        name: 'San Miguel de Tucuman, Tucuman'
-      },
-      departureTime: '2017-12-25 05:50:00',
-      departureAirport: {
-        id: 'EZE',
-        description: 'Aeropuerto Ezeiza Ministro Pistarini, Buenos Aires, Argentina',
-        timeZone: '-03:00'
-      },
-      departureCity: {
-        id: 'BUE',
-        name: 'Buenos Aires, Ciudad de Buenos Aires'
-      }
-    }
-
-    this.setState({ flight: this.props.flights.find((flight) => flight.id == this.props.flightId) || flight });
+    this.setState({ flight: this.props.flights.find((flight) => flight.id == this.props.flightId) });
   }
 
   render() {
-    const adults = Number(this.props.flight.rawPrice.adults ? this.props.flight.rawPrice.adults.quantity : 0);
-    const children = Number(this.props.flight.rawPrice.children ? this.props.flight.rawPrice.children.quantity : 0);
-    const infants = Number(this.props.flight.rawPrice.infants ? this.props.flight.rawPrice.infants.quantity : 0);
+    const adults = Number(this.state.flight.rawPrice.adults ? this.state.flight.rawPrice.adults.quantity : 0);
+    const children = Number(this.state.flight.rawPrice.children ? this.state.flight.rawPrice.children.quantity : 0);
+    const infants = Number(this.state.flight.rawPrice.infants ? this.state.flight.rawPrice.infants.quantity : 0);
 
     return (
       <div style={styles.container}>
