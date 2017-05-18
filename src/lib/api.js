@@ -22,8 +22,8 @@ const api = {
   async getCitiesImages(city) {
     const res = await fetch(`${baseGoogleUrl}textsearch/json?query=${city}&key=${googleKey}`);
     const search = await res.json();
-    //const image = await fetch(`${baseGoogleUrl}photo/json?maxwidth=280&key=${googleKey}&photoreference=${search.results[0].photos[0].photo_reference}`);
-    return null;
+    const image = await fetch(`${baseGoogleUrl}photo/json?maxwidth=280&key=${googleKey}&photoreference=${search.results[0].photos[0].photo_reference}`);
+    return image;
   },
   getInstallments(requiredParams, optionalParams = {}) {
     const url = `${baseUrl}getinstallments`;

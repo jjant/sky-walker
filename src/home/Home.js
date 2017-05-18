@@ -15,9 +15,9 @@ const Home = () => (
       />
       <div style={styles.barWrapper}>
         <SearchBar />
-      </div>    
+      </div>
     </div>
-    
+
     <div style={styles.offerContainer}>
       <h2>Descubrí nuevos destinos</h2>
       <OfferGrid />
