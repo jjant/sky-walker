@@ -10,7 +10,7 @@ class PassengerLoaderView extends Component {
     if (!this.props.location.search.includes('=') && !this.props.flightId) return this.props.history.push('/error');
     const params = this.props.flightsParams;
     const id = this.props.location.search.includes('=') ? this.props.location.search.split('=')[1] : this.props.flightId;
-    this.props.dispatch(setFlightBooking(id));
+    this.props.dispatch(setFlightBooking(id.split('&')[0]));
     if (!this.props.passengers.length) this.props.dispatch(newPassengers(+params.adults + +params.children + +params.infants));
   }
 
