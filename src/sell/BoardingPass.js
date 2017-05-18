@@ -5,9 +5,9 @@ import moment from 'moment';
 
 export default class BoardingPass extends Component {
   render() {
-    const adults = Number(this.props.flight.rawPrice.adults.quantity);
-    const children = Number(this.props.flight.rawPrice.children.quantity);
-    const infants = Number(this.props.flight.rawPrice.infants.quantity);
+    const adults = Number(this.props.flight.rawPrice.adults ? this.props.flight.rawPrice.adults.quantity : 0);
+    const children = Number(this.props.flight.rawPrice.children ? this.props.flight.rawPrice.children.quantity : 0);
+    const infants = Number(this.props.flight.rawPrice.infants ? this.props.flight.rawPrice.infants.quantity : 0);
 
     return (
       <div style={{ ...this.props.style, ...styles.ticketContainer}}>

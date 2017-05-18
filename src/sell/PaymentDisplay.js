@@ -4,7 +4,7 @@ import countries from '../../public/countries.json';
 import Colors from '../constants/Colors';
 
 const PaymentDisplay = ({ payment, style }) => {
-  const country = countries.find((country) => country.countryCode === payment.country);
+  const country = countries.find((country) => country.shortCode === payment.country);
 
   return (
     <div style={style}>
