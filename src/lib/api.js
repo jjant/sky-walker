@@ -1,7 +1,10 @@
 import moment from 'moment';
 
 const baseUrl = 'http://hci.it.itba.edu.ar/v1/api/booking.groovy?method=';
-
+const baseGoogleUrl = 'https://maps.googleapis.com/maps/api/place/';
+const googleKey = 'AIzaSyBmOL6BXPEWANzoe9x4cyybRrOp35p3uv4';
+// valid query = https://maps.googleapis.com/maps/api/place/textsearch/json?query="Montevideo, Montevideo, Uruguay"&key=AIzaSyBmOL6BXPEWANzoe9x4cyybRrOp35p3uv4
+// valid query = https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyBmOL6BXPEWANzoe9x4cyybRrOp35p3uv4&photoreference=CmRYAAAAOstfpxNjorhWYYYN-ZuPJsXKy9LlPe4ECjqNGB5oQml8Y3MgkNBNHl3YINBmuHZh2yxkryjrePBHLeutm4Uzidv6kAiwjXnGZQPRGaY8KKcEDkIMfkl-3Mye14ADnlneEhBEPNXhzVkrTlsooIdsidA3GhTT9UIoHXsW2v9v4wzgO8CU6QKRkg&maxwidth=300
 const api = {
   getOneWayFlights(requiredParams, optionalParams = {}) {
     const url = `${baseUrl}getonewayflights`;
@@ -16,11 +19,24 @@ const api = {
     return fetch(urlForQuery(url, params))
             .then(resp => resp.json())
   },
+  async getCitiesImages(city) {
+    const res = await fetch(`${baseGoogleUrl}textsearch/json?query=${city}&key=${googleKey}`);
+    const search = await res.json();
+    const image = await fetch(`${baseGoogleUrl}photo/json?maxwidth=280&key=${googleKey}&photoreference=${search.results[0].photos[0].photo_reference}`);
+    return image;
+  },
   getInstallments(requiredParams, optionalParams = {}) {
     const url = `${baseUrl}getinstallments`;
     const params = {...requiredParams, ...optionalParams};
     return fetch(urlForQuery(url, params))
             .then(resp => resp.json())
+  },
+  getDeals(requiredParams, optionalParams = {}) {
+    const url = `${baseUrl}getflightdeals`;
+    const params = {...requiredParams, ...optionalParams};
+    return fetch(urlForQuery(url, params))
+            .then(resp => resp.json())
+            .then(resp => formatDeals(resp.deals));
   },
   bookFlight(body = {}) {
     const url = `${baseUrl}bookflight`;
@@ -42,6 +58,22 @@ const api = {
 function formatFlights(flights) {
   if (!flights) return [];
   return flights.map(flight => formatFlight(flight));
+}
+
+function formatDeals(deals) {
+  if (!deals) return [];
+  return deals.map(deal => formatDeal(deal));
+}
+
+function formatDeal(deal) {
+  return {
+    city: {
+      id:  deal.city.id,
+      name:  deal.city.name,
+    },
+    country: deal.city.country,
+    price: deal.price,
+  }
 }
 
 function formatFlight(flight) {

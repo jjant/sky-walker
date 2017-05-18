@@ -30,7 +30,7 @@ class Success extends Component {
         <BoardingPass style={{ marginTop: 20 }} flight={this.props.selectedFlights.departure_flight}/>
 
         <Link to="/">
-          <button style={styles.button}>DESCUBRÍ NUEVOS DESTINOS</button>        
+          <button style={styles.button}>DESCUBRÍ NUEVOS DESTINOS</button>
         </Link>
       </div>
     );
@@ -63,7 +63,7 @@ const styles = {
   }, h2: {
     fontSize: 30,
     fontWeight: 400,
-    marginTop: 20, 
+    marginTop: 20,
   }, button: {
     backgroundColor: Colors.pink,
     border: '1px solid red',

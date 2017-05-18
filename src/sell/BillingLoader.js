@@ -7,6 +7,7 @@ import ErrorCustom from './Error'
 import { submitPayment } from '../actions/bookActions';
 import api from '../lib/api';
 import countries from '../../public/countries.json';
+import Alert from 'react-s-alert';
 
 class BillingLoader extends Component {
   constructor(props) {
@@ -43,6 +44,7 @@ class BillingLoader extends Component {
     const ccvalid = await api.validateCard({ number: this.state.payment.ccnumber.split(' ').join(''), exp_date: this.state.payment.ccdate.split(' / ').join(''), sec_code: this.state.payment.ccv });
     if (ccvalid.error || !ccvalid.valid ) return alert('La tarjeta de crédito es inválida. Por favor, revisela.');
 
+    if (window.document.querySelector('.error-field')) return;
     this.props.nextStep();
   }
 

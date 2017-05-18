@@ -6,6 +6,7 @@ import PassengerDisplay from './PassengerDisplay';
 import PaymentDisplay from './PaymentDisplay';
 import Colors from '../constants/Colors';
 import api from '../lib/api';
+import Alert from 'react-s-alert';
 
 class Summary extends Component {
   bookFlight = () => {
@@ -42,12 +43,8 @@ class Summary extends Component {
         }
       }
 
-      console.log(book);
-
       const response = await api.bookFlight(book);
-      console.log(response);
-
-      //if (!response.ok) return console.log('error');
+      if (response.error) return Alert.error('Se produjo un error tratando de realizar la compra. Compruebe que todos sus datos sean válidos.');
     });
 
     return this.props.history.push('/success');
@@ -61,7 +58,7 @@ class Summary extends Component {
         <div style={{...styles.container, marginTop: 0, flexDirection: 'column'}}>
           { this.props.selectedFlights.arrival_flight ? <BoardingPass style={{ marginTop: 10 }} flight={this.props.selectedFlights.arrival_flight} /> : null }
           <BoardingPass flight={this.props.selectedFlights.departure_flight}/>
-  
+
           <div style={{...styles.container, width: 900, padding: 0, justifyContent: 'flex-start', marginTop: 10, alignItems: 'flex-start'}}>
             <PaymentDisplay style={{ background: Colors.gray, textAlign: 'left', color: 'black', border: '1px solid gray' }} payment={this.props.payment} />
 

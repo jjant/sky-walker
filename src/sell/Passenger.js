@@ -28,7 +28,7 @@ export default class Sell extends Component {
     </div>,
     <div key="birthdate" style={styles.fieldset}>
       <label style={styles.label} htmlFor="">Fecha de nacimiento</label>
-      <Input tabIndex={3 + this.props.index * 4} value={ this.props.passenger.birthdate } required onChange={ this._updatePassenger.bind(this) } name="birthdate" style={styles.inputDate} type="date"/>
+      <Input tabIndex={3 + this.props.index * 4} value={ this.props.passenger.birthdate } max={moment().format('YYYY-MM-DD')} min={moment().subtract(110, 'years').format('YYYY-MM-DD')} required onChange={ this._updatePassenger.bind(this) } name="birthdate" style={styles.inputDate} type="date"/>
     </div>,
     <div key="document" style={styles.fieldset}>
       <label style={styles.label} htmlFor="">Tipo y número de documento</label>
@@ -57,7 +57,8 @@ export default class Sell extends Component {
 const styles = {
   container: {
     textAlign: 'left',
-    marginBottom: 20
+    marginBottom: 20,
+    width: 900,
   },
   title: {
     margin: 0,
