@@ -7,11 +7,9 @@ import api from '../lib/api';
 
 class PassengerLoaderView extends Component {
   componentWillMount() {
-    if (!this.props.location.search.includes('=') && !this.props.flightId) return this.props.history.push('/error');
+    if(!this.props.selectedFlights) return this.props.history.push('/error');
     const params = this.props.flightsParams;
-    const id = this.props.location.search.includes('=') ? this.props.location.search.split('=')[1] : this.props.flightId;
-    this.props.dispatch(setFlightBooking(id.split('&')[0]));
-    if (!this.props.passengers.length) this.props.dispatch(newPassengers(+params.adults + +params.children + +params.infants));
+    if (this.props.location.search.includes('clearPassengers')) this.props.dispatch(newPassengers(+params.adults + +params.children + +params.infants));
   }
 
   render() {
@@ -26,7 +24,7 @@ class PassengerLoaderView extends Component {
 
 const mapStateToProps = (state) => ({
   flightsParams: state.flights.flightParams,
-  flightId: state.book.flightId,
+  selectedFlights: state.flights.selected_flights,
   passengers: state.book.passengers,
 });
 

@@ -6,7 +6,7 @@ import { changeSelectedFlights, changeSearchBarValue, handleArrivalFlightSelecte
 
 class Buy extends Component {
   getRoute = () => {
-    const passengerRoute = `/passengers?id=${this.props.flight}&clearPassengers=true`;
+    const passengerRoute = `/passengers?clearPassengers=true`;
     const searchRoute = '/search';
     if (this.props.isRoundTrip && this.props.isFirstFlight)
       return searchRoute;
@@ -14,9 +14,11 @@ class Buy extends Component {
   }
 
   onClick = () => {
-    const depatureFlight = { departure_flight: this.props.flight };
-    const arrivalFlight = { arrival_flight: this.props.flight };
-    debugger;
+    const flight = this.props.flights.find((flight) => flight.id == this.props.flight );
+
+    const depatureFlight = { departure_flight: flight };
+    const arrivalFlight = { arrival_flight: flight };
+
     if (this.props.isRoundTrip && this.props.isFirstFlight) {
       this.props.dispatch(changeSearchBarValue({ first_flight: false }));
       this.props.dispatch(changeSelectedFlights(arrivalFlight));
@@ -50,6 +52,7 @@ const styles = {
 };
 
 const mapStateToProps = (state) => ({
+  flights: state.flights.flights,
   flightParams: state.flights.flightParams,
   isRoundTrip: state.flights.flightParams.round_trip,
   isFirstFlight: state.flights.flightParams.first_flight,

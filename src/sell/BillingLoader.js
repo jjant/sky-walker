@@ -69,7 +69,7 @@ class BillingLoader extends Component {
 
       if (validNum && validExpiry && validCCV) {
         const body = {
-          flight_id: this.props.flightId,
+          flight_id: this.props.selectedFlights.departure_flight.id,
           adults: this.props.flightParams.adults,
           children: this.props.flightParams.children,
           infants: this.props.flightParams.infants,
@@ -179,7 +179,7 @@ class BillingLoader extends Component {
 
 const mapStateToProps = (state) => ({
   payment: state.book.payment,
-  flightId: state.book.flightId,
+  selectedFlights: state.flights.selected_flights,
   flightParams: state.flights.flightParams,
 });
 

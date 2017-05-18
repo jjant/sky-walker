@@ -40,6 +40,7 @@ const api = {
 };
 
 function formatFlights(flights) {
+  if (!flights) return [];
   return flights.map(flight => formatFlight(flight));
 }
 

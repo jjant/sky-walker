@@ -15,7 +15,9 @@ class HeaderResume extends Component {
   }
 
   render() {
-    const totalPrice = ((this.props.flights.find((flight) => flight.id == this.props.flightId) || {}).price || {}).total || '';
+    const goPrice = this.props.selectedFlights.departure_flight.price.total;
+    const backPrice = this.props.selectedFlights.arrival_flight ? this.props.selectedFlights.arrival_flight.price.total : 0;
+    console.log(goPrice, backPrice)
     return(
       <div style={styles.header}>
         <div>
@@ -32,7 +34,7 @@ class HeaderResume extends Component {
         </div>
 
         { !this.props.show ? null : <div style={styles.passengerContainer}>{ this.props.passengers.map((passenger, idx) => <span key={idx} style={{display: 'block'}}>{this.getPassengerData(passenger)}</span>) }</div> }
-        <div style={styles.totalContainer}><span style={styles.totalText}>TOTAL: U$D { totalPrice }</span></div>
+        <div style={styles.totalContainer}><span style={styles.totalText}>TOTAL: U$D { goPrice + backPrice }</span></div>
       </div>
     );
   }
@@ -41,7 +43,7 @@ class HeaderResume extends Component {
 const mapStateToProps = (state) => ({
   flightsParams: state.flights.flightParams,
   flights: state.flights.flights,
-  flightId: state.book.flightId,
+  selectedFlights: state.flights.selected_flights,
   passengers: state.book.passengers,
 });
 

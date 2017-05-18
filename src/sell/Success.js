@@ -7,78 +7,27 @@ import BoardingPass from './BoardingPass';
 class Success extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { flight: {} };
   }
 
   componentWillMount() {
-    const flight = {
-      id: 94588,
-      price: 344.72,
-      rawPrice: {
-        adults: {
-          base_fare: 278,
-          quantity: 2
-        },
-        children: {
-          base_fare: 178,
-          quantity: 1
-        },
-        infants: {
-          base_fare: 27,
-          quantity: 3
-        },
-        total: {
-          charges: 11.12,
-          taxes: 55.6,
-          fare: 278,
-          total: 344.72
-        }
-      },
-      duration: '01:19',
-      cabinType: 'ECONOMY',
-      airline: {
-        id: '8R',
-        name: 'SOL',
-        rating: 4.8
-      },
-      arrivalTime: '2017-12-25 07:09:00',
-      arrivalAirport: {
-        id: 'TUC',
-        description: 'Aeropuerto Benjamin Matienzo, San Miguel de Tucuman, Argentina',
-        timeZone: '-03:00'
-      },
-      arrivalCity: {
-        id: 'TUC',
-        name: 'San Miguel de Tucuman, Tucuman'
-      },
-      departureTime: '2017-12-25 05:50:00',
-      departureAirport: {
-        id: 'EZE',
-        description: 'Aeropuerto Ezeiza Ministro Pistarini, Buenos Aires, Argentina',
-        timeZone: '-03:00'
-      },
-      departureCity: {
-        id: 'BUE',
-        name: 'Buenos Aires, Ciudad de Buenos Aires'
-      }
-    }
-
-    this.setState({ flight: this.props.flights.find((flight) => flight.id == this.props.flightId) || flight });
+    this.setState({ flight: this.props.selectedFlights.departure_flight });
   }
 
   render() {
-    const adults = Number(this.props.flight.rawPrice.adults ? this.props.flight.rawPrice.adults.quantity : 0);
-    const children = Number(this.props.flight.rawPrice.children ? this.props.flight.rawPrice.children.quantity : 0);
-    const infants = Number(this.props.flight.rawPrice.infants ? this.props.flight.rawPrice.infants.quantity : 0);
+    const adults = Number(this.props.flightParams.adults);
+    const children = Number(this.props.flightParams.children);
+    const infants = Number(this.props.flightParams.infants);
 
     return (
       <div style={styles.container}>
         <div style={styles.header}>
           <h1 style={styles.h1}>¡Felicitaciones!</h1>
-          <h2 style={styles.h2}>Has adquirido {adults + children + infants} { adults + children + infants === 1 ? 'pasaje' : 'pasajes'}  con destino a {this.state.flight.arrivalCity.name}. <br/> Esperamos que disfrutes tu viaje.</h2>
+          <h2 style={styles.h2}>Has adquirido {adults + children + infants} { adults + children + infants === 1 ? 'pasaje' : 'pasajes'} {this.props.selectedFlights.arrival_flight ? 'ida y vuelta' : ''} con destino a {this.props.selectedFlights.arrival_flight ? this.props.selectedFlights.arrival_flight.arrivalCity.name : this.props.selectedFlights.departure_flight.arrivalCity.name }. <br/> Esperamos que disfrutes tu viaje.</h2>
         </div>
-        
-        <BoardingPass style={{ marginTop: 20 }} flight={this.state.flight} />
+
+        { this.props.selectedFlights.arrival_flight ? <BoardingPass style={{ marginTop: 10 }} flight={this.props.selectedFlights.arrival_flight} /> : null }
+        <BoardingPass style={{ marginTop: 20 }} flight={this.props.selectedFlights.departure_flight}/>
 
         <Link to="/">
           <button style={styles.button}>DESCUBRÍ NUEVOS DESTINOS</button>        
@@ -90,7 +39,8 @@ class Success extends Component {
 
 const mapStateToProps = (state) => ({
   flights: state.flights.flights,
-  flightId: state.book.flightId,
+  flightParams: state.flights.flightParams,
+  selectedFlights: state.flights.selected_flights,
 });
 
 export default connect(mapStateToProps)(Success);
