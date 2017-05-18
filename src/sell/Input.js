@@ -39,7 +39,7 @@ export default class Input extends React.Component {
       <div>
         { this.props.children }
         <input {...props} onError={(ev) => ev.target.value ? this.setState({ error: true }) : null } onChange={ this._updateField }/>
-        { this.state.error ? <div style={styles.error}><span>{this.props.errorMessage || "El campo es incorrecto"}</span></div> : null } 
+        { this.state.error ? <div className='error-field' style={styles.error}><span>{this.props.errorMessage || "El campo es incorrecto"}</span></div> : null } 
       </div>
     )
   }

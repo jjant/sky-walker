@@ -69,6 +69,8 @@ class PassengerLoader extends Component {
 
     console.log(this.props.passengers);
     this.props.dispatch(submitPassengers(this.props.passengers));
+
+    if (window.document.querySelector('.error-field')) return;
     this.props.nextStep();
   }
 
