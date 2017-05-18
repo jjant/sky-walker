@@ -47,7 +47,7 @@ class App extends Component {
               <Route path="/search" component={Search} />
               <Route path="/passengers" component={PassengerLoaderView} />
               <Route path="/bill" component={BillingLoaderView} />
-              <Route path="/summary" component={BillingLoaderView} />
+              <Route path="/summary" component={Summary} />
               <Route path="/success" component={Success} />
               <Route component={NotFound} />
             </Switch>
