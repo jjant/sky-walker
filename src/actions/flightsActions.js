@@ -6,6 +6,8 @@ export const actions = {
   FETCH_FLIGHTS_SUCCESS: 'FETCH_FLIGHTS_SUCCESS',
   CHANGE_SEARCH_BAR_VALUE: 'CHANGE_SEARCH_BAR_VALUE',
   FETCH_AIRLINES_SUCESS: 'FETCH_AIRLINES_SUCESS',
+  CHANGE_SELECTED_FLIGHTS: 'CHANGE_SELECTED_FLIGHTS',
+  HANDLE_ARRIVAL_FLIGHT_SELECTED: 'HANDLE_ARRIVAL_FLIGHT_SELECTED',
 };
 
 export function fetchFlights(flightParams) {
@@ -50,5 +52,27 @@ export function fetchAirlinesSuccess(airlines) {
   return {
     type: actions.FETCH_AIRLINES_SUCESS,
     payload: airlines,
+  };
+}
+
+//payload must be of the form
+// { departure_flight: flight }
+// or
+// { arrival_flight: flight }
+export function changeSelectedFlights(payload) {
+  return {
+    type: actions.CHANGE_SELECTED_FLIGHTS,
+    payload,
+  };
+}
+
+export function handleArrivalFlightSelected(flightParams) {
+  return {
+    type: actions.HANDLE_ARRIVAL_FLIGHT_SELECTED,
+    payload: {
+      from: flightParams.to,
+      to: flightParams.from,
+      dep_date: flightParams.arr_date,
+    },
   };
 }

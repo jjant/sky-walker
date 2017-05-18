@@ -36,6 +36,7 @@ class FlightDatePicker extends Component {
 
   getPropsForDatePicker = () => {
     const commonProps = {
+      isOutsideRange: (date) => !date.isSameOrAfter(moment().add(2, 'days')),
       hideKeyboardShortcutsPanel: this.props.hideKeyboardShortcutsPanel,
       displayFormat: this.props.displayFormat,
     };

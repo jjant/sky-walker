@@ -4,8 +4,8 @@ import Colors from '../constants/Colors';
 
 const renderDateFields = (isRoundTrip) => {
   const oneWayComponent = <label style={{width: '145px', ...styles.label}}>Fecha de ida</label>;
-  const roundTripComponent = [<label style={{ ...styles.label, width: '118px', paddingLeft: '20px' }}>Fecha de ida</label>,
-                              <label style={{ ...styles.label, width: '118px', paddingLeft: '20px' }}>Fecha de vuelta</label>];
+  const roundTripComponent = [<label key="ida" style={{ ...styles.label, width: '118px', paddingLeft: '20px' }}>Fecha de ida</label>,
+                              <label key="vuelta" style={{ ...styles.label, width: '118px', paddingLeft: '20px' }}>Fecha de vuelta</label>];
   return isRoundTrip ? roundTripComponent : oneWayComponent ;
 };
 

@@ -54,9 +54,9 @@ class SortBar extends Component {
 const styles = {
   container: {
     display: 'flex',
-    width: '100%',
-    maxWidth: '1300px',
-    marginBottom: '30px',
+    // width: '100%',
+    // maxWidth: '1300px',
+    // marginBottom: '30px',
     justifyContent: 'flex-end',
   },
   select: {

@@ -7,7 +7,7 @@ const lastFieldStyle = (isLastField) => {
 }
 
 const onChange = (name, dispatch, newValue) => {
-  const payload = newValue >= 0 ? { [name]: newValue } : { [name]: '' };
+  const payload = newValue >= 0 ? { [name]: newValue } : { [name]: 0 };
   return dispatch(changeSearchBarValue(payload));
 };
 

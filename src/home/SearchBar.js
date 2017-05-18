@@ -13,6 +13,7 @@ const renderSeatCountFields = () => {
   return fieldNames.map((field, index) => {
     return (
       <SeatCountField
+        key={field}
         style={styles.searchField}
         placeholder={fieldPlaceholders[index]}
         name={field}

@@ -8,9 +8,15 @@ function flightsReducer(state = initialFlightsState, action) {
     case actions.FETCH_FLIGHTS_SUCCESS:
       return { ...state, flights: action.payload, fetching: false };
     case actions.CHANGE_SEARCH_BAR_VALUE:
-      return { ...state, flightParams: { ...state.flightParams, ...action.payload } };
+      if (action.payload.round_trip)
+        return { ...state, flightParams: { ...state.flightParams, ...action.payload, first_flight: true }};
+      return { ...state, flightParams: { ...state.flightParams, ...action.payload }};
     case actions.FETCH_AIRLINES_SUCESS:
       return { ...state, airlines: action.payload };
+    case actions.CHANGE_SELECTED_FLIGHTS:
+      return { ...state, selected_flights: { ...state.selected_flights, ...action.payload } };
+    case actions.HANDLE_ARRIVAL_FLIGHT_SELECTED:
+      return { ...state, flightParams: { ...state.flightParams, ...action.payload } };
     default:
       return state;
   }
@@ -37,11 +43,12 @@ const exampleFlight = {
 
 const initialFlightsState = {
   fetching: false,
+  selected_flights: {},
   flightParams: {
     from: "BUE",
     to: "TUC",
-    dep_date: moment().format('YYYY-MM-DD'),
-    arr_date: moment().add(1, 'days').format('YYYY-MM-DD'),
+    dep_date: moment().add(2, 'days').format('YYYY-MM-DD'),
+    arr_date: moment().add(7, 'days').format('YYYY-MM-DD'),
     adults: 1,
     children: 0,
     infants: 0,
