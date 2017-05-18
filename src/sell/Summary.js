@@ -59,8 +59,8 @@ class Summary extends Component {
         <h2 style={{margin: 0, marginTop: 60, color: Colors.pink, fontSize: 35 }}>Confirmá tus datos</h2>
         <h3>Confirmá tus datos y los de los pasajeros para realizar la compra de los pasajes</h3>
         <div style={{...styles.container, marginTop: 0, flexDirection: 'column'}}>
-          <BoardingPass flight={this.props.selectedFlights.departure_flight}/>
           { this.props.selectedFlights.arrival_flight ? <BoardingPass style={{ marginTop: 10 }} flight={this.props.selectedFlights.arrival_flight} /> : null }
+          <BoardingPass flight={this.props.selectedFlights.departure_flight}/>
   
           <div style={{...styles.container, width: 900, padding: 0, justifyContent: 'flex-start', marginTop: 10, alignItems: 'flex-start'}}>
             <PaymentDisplay style={{ background: Colors.gray, textAlign: 'left', color: 'black', border: '1px solid gray' }} payment={this.props.payment} />
@@ -75,7 +75,7 @@ class Summary extends Component {
           </div>
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
           <PinkButton onClick={ () => this.props.history.push(`/passengers`) } style={{ marginRight: 10, backgroundColor: 'grey', border: '1px solid grey' }}>EDITAR DATOS</PinkButton>
           <PinkButton onClick={ this.bookFlight.bind(this) }>CONFIRMAR COMPRA</PinkButton>
         </div>
