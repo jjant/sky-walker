@@ -7,6 +7,7 @@ import ErrorCustom from './Error'
 import { submitPayment } from '../actions/bookActions';
 import api from '../lib/api';
 import countries from '../../public/countries.json';
+import Alert from 'react-s-alert';
 
 class BillingLoader extends Component {
   constructor(props) {
