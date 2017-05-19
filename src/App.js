@@ -13,6 +13,7 @@ import Success from './sell/Success';
 import Header from './layout/Header';
 import Home from './home/Home';
 import NotFound from './not_found/NotFound';
+import InternetCheck from './lib/InternetCheck';
 
 import Alert from 'react-s-alert';
 import 'react-s-alert/dist/s-alert-default.css';
@@ -51,7 +52,7 @@ class App extends Component {
               <Route path="/success" component={Success} />
               <Route component={NotFound} />
             </Switch>
-            <Alert stack={{limit: 1}} />
+            <InternetCheck />
         </div>
       </Router>
     );
