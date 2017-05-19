@@ -3,6 +3,7 @@ import Header from './Header';
 import SearchBar from './SearchBar';
 import OfferGrid from '../offers/OfferGrid';
 import backgroundImage from '../../assets/barcelona.jpg';
+import Colors from '../constants/Colors';
 
 const Home = () => (
   <div>
@@ -19,7 +20,7 @@ const Home = () => (
     </div>
 
     <div style={styles.offerContainer}>
-      <h2>Descubrí nuevos destinos</h2>
+      <h2 style={{ color: Colors.darkGray, fontWeight: 200 }}>Descubre los destinos de tu próximo viaje</h2>
       <OfferGrid />
     </div>
     <div style={styles.deals} />
