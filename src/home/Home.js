@@ -15,6 +15,7 @@ const Home = () => (
         className="main-background-image"
       />
       <div style={styles.barWrapper}>
+        <h1 style={styles.title} >Comenzá a viajar con Skywalker</h1>
         <SearchBar />
       </div>
     </div>
@@ -24,12 +25,19 @@ const Home = () => (
       <OfferGrid />
     </div>
     <div style={styles.deals} />
+
+    <span style={{ color: Colors.darkGray }}> Skywalker &copy; 2017</span>
   </div>
 );
 
 const styles = {
   container: {
     position: 'relative',
+  },
+  title: {
+    marginBottom: 60,
+    fontSize: 40,
+    color: Colors.pink
   },
   backgroundImage: {
     width: '100%',
@@ -40,7 +48,7 @@ const styles = {
     transform: 'translateX(-50%)',
   },
   barWrapper: {
-    marginTop: '200px',
+    marginTop: '100px',
   },
   deals: {
     width: '100%',
