@@ -34,7 +34,7 @@ const styles = {
     width: '100%',
     position: 'absolute',
     zIndex: '-1',
-    top: '-40%',
+    top: '-100%',
     left: '50%',
     transform: 'translateX(-50%)',
   },
@@ -43,8 +43,6 @@ const styles = {
   },
   deals: {
     width: '100%',
-    height: '400px',
-    backgroundColor: 'lightBlue',
   },
   offerContainer: {
     width: '100%',
