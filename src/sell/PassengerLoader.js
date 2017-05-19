@@ -28,7 +28,7 @@ class PassengerLoader extends Component {
     });
 
     const hasErrors = emptyFields.find((passengerErrors) => passengerErrors.length);
-    console.log(emptyFields);
+   
     if (hasErrors) {
       emptyFields.forEach((passengerErrors, id) => {
         errorObj.push({});
@@ -39,7 +39,6 @@ class PassengerLoader extends Component {
 
       const passengers = this.props.passengers.map((passenger, id) => ({...passenger, ...(errorObj[id])}));
       
-      console.log(passengers);
       this.props.dispatch(submitPassengers(passengers));
       return;
     }
@@ -58,16 +57,15 @@ class PassengerLoader extends Component {
 
     this.props.passengers.forEach((passenger) => {
       const age = moment().diff(passenger.birthdate, 'years');
-      console.log(age);
-      if (age >= 18) ages.adults++;
-      else if (age >= 11) ages.children++;
+
+      if (age >= 11) ages.adults++;
+      else if (age >= 2) ages.children++;
       else ages.infants++;
     });
 
     const hasBadAges = Object.keys(ages).find((field) => ages[field] != this.props.flightsParams[field]);
     if (hasBadAges) return Alert.error('Las edades de los pasajeros cargados, no se corresponde con la de los pasajes que se quieren sacar. Compruebe la cantidad de ' + langMap[hasBadAges] + ' que cargó.')
 
-    console.log(this.props.passengers);
     this.props.dispatch(submitPassengers(this.props.passengers));
 
     if (window.document.querySelector('.error-field')) return;

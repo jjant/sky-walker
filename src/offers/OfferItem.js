@@ -12,7 +12,6 @@ export default class OfferItem extends React.Component {
   }
 
   _onLoad = (e) => {
-    console.log(e.target)
     this.setState({ imageHeight: e.target.offsetHeight });
   }
 

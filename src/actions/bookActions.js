@@ -15,7 +15,6 @@ export function submitPassengers(passengers) {
 }
 
 export function setFlightBooking(id) {
-  console.log('ID', id)
   return {
     type: actions.SET_FLIGHT,
     payload: id,

@@ -4,7 +4,6 @@ import moment from 'moment';
 const idMap = ['DNI', 'PASAPORTE'];
 
 const PassengerDisplay = ({ passenger }) => {
-  console.log(passenger);
   return (
     <div style={{ marginTop: 20, marginRight: 20 }}>
       <label style={{...styles.row, fontWeight: 900 }}>{passenger.first_name} {passenger.last_name}</label>

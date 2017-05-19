@@ -17,7 +17,7 @@ class HeaderResume extends Component {
   render() {
     const goPrice = this.props.selectedFlights.departure_flight.price.total;
     const backPrice = this.props.selectedFlights.arrival_flight ? this.props.selectedFlights.arrival_flight.price.total : 0;
-    console.log(goPrice, backPrice)
+
     return(
       <div style={styles.header}>
         <div>

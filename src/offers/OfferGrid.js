@@ -84,12 +84,10 @@ class OfferGrid extends Component {
   getDeals = async () => {
     const deals = await api.getDeals({ from: this.props.from || 'BUE' });
     this.setState({ deals });
-    console.log(deals.map(deal => deal.city));
   }
 
   render() {
     const nombresQueQuiero = ["LON", 'MVD', 'RIO', 'SCL', 'FLN', 'ASU', 'RGL', 'IGR'];
-    console.log(this.state.deals.map(deal => deal.city.id));
     return(
       <Masonry style={{ width: 1200, margin: '0 auto'}}>
         { this.state.deals.sort((a,b) => a.price - b.price ).filter(deal => nombresQueQuiero.includes(deal.city.id)).map((offer, id) => <OfferItem key={id} offer={offer} image={images[offer.city.id]} />) }

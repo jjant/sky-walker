@@ -14,12 +14,10 @@ class FlightDatePicker extends Component {
   }
 
   onFocusChange = (focused) => {
-    console.log(focused)
     this.props.dispatch(changeSearchBarValue(focused));
   }
 
   onFocusChangeRange = (focusedInput) => {
-    console.log(focusedInput);
     this.props.dispatch(changeSearchBarValue({ focusedInput }));
   }
 
@@ -64,7 +62,6 @@ class FlightDatePicker extends Component {
   }
 
   render() {
-    console.log(this.props);
     return this.props.flightParams.round_trip ?
       <DateRangePicker {...this.getPropsForDatePicker()} /> : <SingleDatePicker {...this.getPropsForDatePicker()} />
   }

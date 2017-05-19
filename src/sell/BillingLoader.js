@@ -42,7 +42,7 @@ class BillingLoader extends Component {
     this.props.dispatch(submitPayment(this.state.payment));
     
     const ccvalid = await api.validateCard({ number: this.state.payment.ccnumber.split(' ').join(''), exp_date: this.state.payment.ccdate.split(' / ').join(''), sec_code: this.state.payment.ccv });
-    if (ccvalid.error || !ccvalid.valid ) return alert('La tarjeta de crédito es inválida. Por favor, revisela.');
+    if (ccvalid.error || !ccvalid.valid ) return Alert.error('La tarjeta de crédito es inválida. Por favor, revisel los datos ingresados.');
 
     if (window.document.querySelector('.error-field')) return;
     this.props.nextStep();
