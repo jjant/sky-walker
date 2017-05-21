@@ -26,13 +26,13 @@ class Home extends React.Component {
             className="main-background-image"
           />
           <div style={styles.barWrapper}>
-            <h1 style={styles.title} >Comenzá a viajar con Skywalker</h1>
+            <h1 style={styles.title} >Comience a viajar con Skywalker</h1>
             <SearchBar />
           </div>
         </div>
 
         <div style={styles.offerContainer}>
-          <h2 style={{ color: Colors.darkGray, fontWeight: 200 }}>Descubre los destinos de tu próximo viaje</h2>
+          <h2 style={{ color: Colors.darkGray, fontWeight: 200 }}>Descubra los destinos de su próximo viaje</h2>
           <OfferGrid />
         </div>
         <div style={styles.deals} />
