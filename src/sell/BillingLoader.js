@@ -249,7 +249,7 @@ const styles = {
   },
   error: {
     fontSize: 12,
-    background: Colors.pink,
+    background: Colors.red,
     width: 'calc(100% - 20px)',
     marginTop: 5,
     color: 'white',
