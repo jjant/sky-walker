@@ -58,6 +58,12 @@ const api = {
     return fetch(url, { method: 'POST', headers: {'Content-Type' : 'application/json'}, body: JSON.stringify(body)})
             .then(resp => resp.json())
   },
+  bookFlight2(requiredParams, optionalParams = {}) {
+    const url = `${baseUrl}bookflight2`;
+    const params = {...requiredParams, ...optionalParams};
+    return fetch(urlForQuery(url, params))
+            .then(resp => resp.json())
+  },
   getCities() {
     const url = `http://hci.it.itba.edu.ar/v1/api/geo.groovy?method=getcities`;
     const params = { pageSize: 1000 };
