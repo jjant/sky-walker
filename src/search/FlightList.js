@@ -1,8 +1,11 @@
 import React from 'react';
 import Flight from '../flight/Flight';
 import OneWayFlight from '../flight/OneWayFlight';
+import NoFlights from '../flight/NoFlights';
 
 const renderFlights = (flights, airlines) => {
+  if (!flights.length) return <NoFlights />
+
   return flights.map((flight) => {
     const airline = airlines.find(airline => airline.id === flight.airlineId);
     return (
