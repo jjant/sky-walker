@@ -50,7 +50,12 @@ const styles = {
     position: 'relative',
   },
   title: {
+    display: 'block',
+    margin: '0 auto',
+    background: 'rgba(255,255,255,.25)',
+    padding: 10,
     marginBottom: 60,
+    width: 800,
     fontSize: 40,
     color: Colors.pink
   },

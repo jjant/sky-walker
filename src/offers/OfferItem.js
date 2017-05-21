@@ -21,7 +21,7 @@ export default class OfferItem extends React.Component {
     const fullname = `${offer.city.name} ${offer.country.id === 'AR' ? ', Argentina' : ""}`;
 
     return (
-      <div onMouseEnter={this._onMouseOver} onMouseLeave={this._onMouseOut} style={{...styles.container, height: this.state.imageHeight, width: 280 }}>
+      <div onMouseEnter={this._onMouseOver} onMouseLeave={this._onMouseOut} style={{...styles.container, height: 140, width: 280 }}>
         <img className='offer-item' src={image} onLoad={this._onLoad} style={styles.image}/>
         <div style={styles.overlay}></div>
         <h1 style={styles.text}>{ offer.city.name }{ offer.country.id === 'AR' ? ', Argentina' : "" }</h1>
@@ -36,6 +36,7 @@ const styles = {
     margin: 10,
     cursor: 'pointer',
     position: 'relative',
+    overflow: 'hidden',
   },
   text: {
     position: 'relative',
