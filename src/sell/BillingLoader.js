@@ -154,7 +154,7 @@ class BillingLoader extends Component {
             <label style={styles.label} htmlFor="">Calle</label>
             <Input maxLength="80" name="street" validation={(text) => text ? new RegExp('^[A-Za-z áéíóúñ0-9]+$').test(text) : true} value={this.state.payment.street} onChange={this._updateField.bind(this)} required style={styles.input} type="text"/>
           </div>
-          <div style={{ ...styles.fieldset, ...{ width: 200 } }}>
+          <div style={{ ...styles.fieldset, ...{ width: 250 } }}>
             <label style={styles.label} htmlFor="">Departamento (opcional)</label>
             <Input validation={(text) => text ? new RegExp('^[A-Za-z0-9]+$').test(text) : true} name="apt" value={this.state.payment.apt} onChange={this._updateField.bind(this)} style={styles.input} maxLength="5" type="text"/>
           </div>
