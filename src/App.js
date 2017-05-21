@@ -53,6 +53,7 @@ class App extends Component {
               <Route component={NotFound} />
             </Switch>
             <InternetCheck />
+            <Alert stack={{limit: 1}} />
         </div>
       </Router>
     );
