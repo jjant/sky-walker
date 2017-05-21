@@ -22,20 +22,20 @@ class Summary extends Component {
             security_code: this.props.payment.ccv,
             first_name: this.props.payment.name,
             last_name: this.props.payment.lastname,
-          }
-        },
-        billing_address: {
-          zip_code: this.props.payment.postalcode,
-          street: this.props.payment.street,
-          floor: (this.props.payment.apt || "").slice(0,3),
-          apartment: (this.props.payment.apt || "").slice(-2),
-          city: {
-            id: this.props.payment.state.split('|')[1],
-            state: this.props.payment.state.split('|')[0],
-            country: {
-              id: this.props.payment.country
+          },
+          billing_address: {
+            zip_code: this.props.payment.postalcode,
+            street: this.props.payment.street,
+            floor: (this.props.payment.apt || "").slice(0,3),
+            apartment: (this.props.payment.apt || "").slice(-2),
+            city: {
+              id: this.props.payment.state.split('|')[1],
+              state: this.props.payment.state.split('|')[0],
+              country: {
+                id: this.props.payment.country
+              }
             }
-          }
+          },
         },
         contact: {
           email: this.props.payment.email,
@@ -44,8 +44,8 @@ class Summary extends Component {
       }
 
       const response = await api.bookFlight(book);
-      if (response.error) return Alert.error('Se produjo un error tratando de realizar la compra. Compruebe que todos sus datos sean válidos.');
-      if (id === 1) return this.props.history.push('/success');
+      //if (response.error) return Alert.error('Se produjo un error tratando de realizar la compra. Compruebe que todos sus datos sean válidos.');
+      if (id === Object.keys(this.props.selectedFlights).length - 1) return this.props.history.push('/success');
     });
 
   }
