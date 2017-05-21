@@ -4,8 +4,12 @@ function bookReducer(state = initialBookState, action) {
   switch (action.type) {
     case actions.SUBMIT_PASSENGERS:
       return { ...state, passengers: action.payload };
+    case actions.CLEAR_PASSENGERS:
+      return { ...state, passengers: [] };
     case actions.SUBMIT_PAYMENT:
       return { ...state, payment: action.payload };
+    case actions.CLEAR_PAYMENT:
+      return { ...state, payment: {} };
     case actions.SET_FLIGHT:
       return { ...state, flightId: action.payload };
     case actions.NEW_PASSENGERS:

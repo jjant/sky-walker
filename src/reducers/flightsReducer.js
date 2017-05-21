@@ -17,6 +17,8 @@ function flightsReducer(state = initialFlightsState, action) {
       return { ...state, selected_flights: { ...state.selected_flights, ...action.payload } };
     case actions.HANDLE_ARRIVAL_FLIGHT_SELECTED:
       return { ...state, flightParams: { ...state.flightParams, ...action.payload } };
+    case actions.CLEAR_FLIGHTPARAMS:
+      return { ...state, flightParams: initialFlightsState.flightParams };
     default:
       return state;
   }

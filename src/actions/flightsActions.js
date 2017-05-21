@@ -8,6 +8,7 @@ export const actions = {
   FETCH_AIRLINES_SUCESS: 'FETCH_AIRLINES_SUCESS',
   CHANGE_SELECTED_FLIGHTS: 'CHANGE_SELECTED_FLIGHTS',
   HANDLE_ARRIVAL_FLIGHT_SELECTED: 'HANDLE_ARRIVAL_FLIGHT_SELECTED',
+  CLEAR_FLIGHTPARAMS: 'CLEAR_FLIGHTPARAMS',
 };
 
 export function fetchFlights(flightParams) {
@@ -24,6 +25,13 @@ export function fetchFlightsInProgress() {
     type: actions.FETCH_FLIGHTS_IN_PROGRESS,
   };
 }
+
+export function clearFlightParams() {
+  return {
+    type: actions.CLEAR_FLIGHTPARAMS,
+  };
+}
+
 
 export function fetchFlightsSuccess(flights) {
   return {
