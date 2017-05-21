@@ -1,10 +1,13 @@
 import moment from 'moment';
 
 const baseUrl = 'http://hci.it.itba.edu.ar/v1/api/booking.groovy?method=';
+const geoUrl = 'http://hci.it.itba.edu.ar/v1/api/geo.groovy?method=';
 const baseGoogleUrl = 'https://maps.googleapis.com/maps/api/place/';
 const googleKey = 'AIzaSyBmOL6BXPEWANzoe9x4cyybRrOp35p3uv4';
 // valid query = https://maps.googleapis.com/maps/api/place/textsearch/json?query="Montevideo, Montevideo, Uruguay"&key=AIzaSyBmOL6BXPEWANzoe9x4cyybRrOp35p3uv4
 // valid query = https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyBmOL6BXPEWANzoe9x4cyybRrOp35p3uv4&photoreference=CmRYAAAAOstfpxNjorhWYYYN-ZuPJsXKy9LlPe4ECjqNGB5oQml8Y3MgkNBNHl3YINBmuHZh2yxkryjrePBHLeutm4Uzidv6kAiwjXnGZQPRGaY8KKcEDkIMfkl-3Mye14ADnlneEhBEPNXhzVkrTlsooIdsidA3GhTT9UIoHXsW2v9v4wzgO8CU6QKRkg&maxwidth=300
+
+const countries = [];
 const api = {
   getOneWayFlights(requiredParams, optionalParams = {}) {
     const url = `${baseUrl}getonewayflights`;
@@ -31,6 +34,18 @@ const api = {
     return fetch(urlForQuery(url, params))
             .then(resp => resp.json())
   },
+  getCities(requiredParams, optionalParams = {}) {
+    const url = `${geoUrl}getcities`;
+    const params = {...requiredParams, ...optionalParams};
+    return fetch(urlForQuery(url, params))
+            .then(resp => resp.json())
+  },
+  getCountries(requiredParams, optionalParams = {}) {
+    const url = `${geoUrl}getcountries`;
+    const params = {...requiredParams, ...optionalParams};
+    return fetch(urlForQuery(url, params))
+            .then(resp => resp.json())
+  },
   getDeals(requiredParams, optionalParams = {}) {
     const url = `${baseUrl}getflightdeals`;
     const params = {...requiredParams, ...optionalParams};
@@ -53,6 +68,9 @@ const api = {
     const params = { pageSize: 10000 };
     return fetch(urlForQuery(url, params)).then(resp => resp.json()).then(data => data.airlines);
   },
+  getProcessedRegions() {
+    return countries.length ? countries : processRegions();
+  }
 };
 
 function formatFlights(flights) {
@@ -116,6 +134,40 @@ function formatFlight(flight) {
     departureAirport,
     departureCity,
   };
+}
+
+async function processRegions() {
+  const allCities = (await api.getCities({ pageSize: 200 })).cities;
+  const allCountries = (await api.getCountries({ pageSize: 200 })).countries;
+  const allStates = allCities.map((city) => {
+    const aux = city.name.split(',');
+    if (city.country.id === 'AR') aux.shift();
+    return {...city, name: aux.length === 3 ? city.name.split(',')[1].trim() : city.name.split(',')[0].trim() };
+  });
+  const deduplicateAllStates = [] 
+
+  allStates.forEach((state) => {
+    if (deduplicateAllStates.find((stateraw) => stateraw.name == state.name)) return;
+    deduplicateAllStates.push(state);
+  })
+
+  const allRegions = allCountries;
+
+  allRegions.forEach((country) => {
+    const states = deduplicateAllStates.filter((state) => state.country.id == country.id);
+    country.regions = states;
+  })
+
+  const finalRegions = allRegions.map((country) => {
+    const obj = {
+      countryShortCode: country.id,
+      countryName: country.name,
+      regions: country.regions.map((region) => ({ name: region.name, shortCode: region.id })),
+    }
+    countries.push(obj);
+    return obj;
+  });
+  return finalRegions;
 }
 
 function urlForQuery(url, params) {

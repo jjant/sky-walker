@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import ErrorCustom from './Error'
 import { submitPayment } from '../actions/bookActions';
 import api from '../lib/api';
-import countries from '../../public/countries.json';
 import Alert from 'react-s-alert';
 
 class BillingLoader extends Component {
@@ -15,8 +14,9 @@ class BillingLoader extends Component {
     this.state = { payment: this.props.payment || {}, regions: [] };
   }
 
-  componentWillMount() {
-    this.setState({ payment: this.state.payment, regions: countries });
+  async componentWillMount() {
+    const regions = await api.getProcessedRegions();
+    this.setState({ payment: this.state.payment, regions });
   }
 
   _submit = async () => {

@@ -1,10 +1,10 @@
 import React from 'react'
 import moment from 'moment';
-import countries from '../../public/countries.json';
+import api from '../lib/api';
 import Colors from '../constants/Colors';
 
 const PaymentDisplay = ({ payment, style }) => {
-  const country = countries.find((country) => country.shortCode === payment.country);
+  const country = api.getProcessedRegions().find((country) => country.countryShortCode === payment.country).countryName;
 
   return (
     <div style={style}>

@@ -10,7 +10,7 @@ import Alert from 'react-s-alert';
 
 class Summary extends Component {
   bookFlight = () => {
-    Object.keys(this.props.selectedFlights).forEach( async (flight) => {
+    Object.keys(this.props.selectedFlights).forEach( async (flight, id) => {
       const book = {
         flight_id: this.props.selectedFlights[flight].id,
         passengers: this.props.passengers,
@@ -30,7 +30,7 @@ class Summary extends Component {
           floor: (this.props.payment.apt || "").slice(0,3),
           apartment: (this.props.payment.apt || "").slice(-2),
           city: {
-            id: 'BUE' || this.props.payment.state.split('|')[1],
+            id: this.props.payment.state.split('|')[1],
             state: this.props.payment.state.split('|')[0],
             country: {
               id: this.props.payment.country
@@ -45,9 +45,9 @@ class Summary extends Component {
 
       const response = await api.bookFlight(book);
       if (response.error) return Alert.error('Se produjo un error tratando de realizar la compra. Compruebe que todos sus datos sean válidos.');
+      if (id === 1) return this.props.history.push('/success');
     });
 
-    return this.props.history.push('/success');
   }
 
   render() {
