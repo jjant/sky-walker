@@ -47,8 +47,8 @@ const initialFlightsState = {
   fetching: false,
   selected_flights: {},
   flightParams: {
-    from: "BUE",
-    to: "TUC",
+    from: "",
+    to: "",
     dep_date: moment().add(2, 'days').format('YYYY-MM-DD'),
     arr_date: moment().add(7, 'days').format('YYYY-MM-DD'),
     adults: 1,
