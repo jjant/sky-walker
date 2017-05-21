@@ -98,7 +98,7 @@ class BillingLoader extends Component {
           </div>
           <div style={{ ...styles.fieldset, ...{ width: 150 } }}>
             <label style={styles.label} htmlFor="">Vencimiento</label>
-            <Input errorMessage="Vencimiento inválido"validation={ (val) => val ? CCUtils.validateCardExpiry(...(val.split('/'))) : true } required style={styles.input} onChange={this._updateField.bind(this)} value={this.state.payment.ccdate} name="ccdate" placeholder="mm / yy" type="text" />
+            <Input errorMessage="Vencimiento inválido" validation={ (val) => val ? CCUtils.validateCardExpiry(...(val.split('/'))) : true } required style={styles.input} onChange={this._updateField.bind(this)} value={this.state.payment.ccdate} name="ccdate" placeholder="mm / yy" type="text" />
           </div>
           <div style={{ ...styles.fieldset, ...{ width: 80 } }}>
             <label style={styles.label} htmlFor="">CVV</label>
@@ -120,7 +120,7 @@ class BillingLoader extends Component {
           </div>
           <div style={styles.fieldset}>
             <label style={styles.label} htmlFor="">DNI del titular</label>
-            <Input maxLength="8" name="dni" value={this.state.payment.dni} onChange={this._updateField.bind(this)} errorMessage="Solo se permiten números" required style={styles.input} validation={(text) => text ? new RegExp('^[0-9]+$').test(text) : true} minLength="2" type="text"/>
+            <Input maxLength="8" name="dni" value={this.state.payment.dni} onChange={this._updateField.bind(this)} errorMessage="Debe completarse solo con números" required style={styles.input} validation={(text) => text ? new RegExp('^[0-9]+$').test(text) : true} minLength="2" type="text"/>
           </div>
         </div>
 
@@ -144,7 +144,7 @@ class BillingLoader extends Component {
           </div>
           <div style={{ ...styles.fieldset, ...{ width: 250 } }}>
             <label style={styles.label} htmlFor="">Ciudad</label>
-            <Input maxLength="80" name="city" value={this.state.payment.city} onChange={this._updateField.bind(this)} errorMessage="Sólo se permiten letras" validation={(text) => text ? new RegExp('^[A-Za-z ]+$').test(text) : true} required style={styles.input} minLength="1" type="text"/>
+            <Input maxLength="80" name="city" value={this.state.payment.city} onChange={this._updateField.bind(this)} errorMessage="Debe completarse solo con letras" validation={(text) => text ? new RegExp('^[A-Za-z ]+$').test(text) : true} required style={styles.input} minLength="1" type="text"/>
           </div>
           <div style={{ ...styles.fieldset, ...{ width: 150 } }}>
             <label style={styles.label} htmlFor="">Codigo postal</label>
@@ -164,7 +164,7 @@ class BillingLoader extends Component {
         <div style={styles.fieldContainer}>
           <div style={styles.fieldset}>
             <label style={styles.label} htmlFor="">Email</label>
-            <Input name="email" value={this.state.payment.email} onChange={this._updateField.bind(this)} errorMessage="No es un email correcto" validation={(text) => text ? /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(text) : true} required style={styles.input} maxLength="128" type="email"/>
+            <Input name="email" value={this.state.payment.email} onChange={this._updateField.bind(this)} errorMessage="Email incorrecto" validation={(text) => text ? /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(text) : true} required style={styles.input} maxLength="128" type="email"/>
           </div>
           <div style={styles.fieldset}>
             <label style={styles.label} htmlFor="">Número de teléfono</label>

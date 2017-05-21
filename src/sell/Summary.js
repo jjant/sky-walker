@@ -53,8 +53,8 @@ class Summary extends Component {
   render() {
     return(
       <div>
-        <h2 style={{margin: 0, marginTop: 60, color: Colors.pink, fontSize: 35 }}>Confirmá tus datos</h2>
-        <h3>Confirmá tus datos y los de los pasajeros para realizar la compra de los pasajes</h3>
+        <h2 style={{margin: 0, marginTop: 60, color: Colors.pink, fontSize: 35 }}>Confirme sus datos</h2>
+        <h3>Confirme sus datos y los datos de los pasajeros para realizar la compra de los pasajes</h3>
         <div style={{...styles.container, marginTop: 0, flexDirection: 'column'}}>
           { this.props.selectedFlights.arrival_flight ? <BoardingPass style={{ marginTop: 10 }} flight={this.props.selectedFlights.arrival_flight} /> : null }
           <BoardingPass flight={this.props.selectedFlights.departure_flight}/>

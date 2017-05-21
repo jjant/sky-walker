@@ -23,14 +23,14 @@ class Success extends Component {
       <div style={styles.container}>
         <div style={styles.header}>
           <h1 style={styles.h1}>¡Felicitaciones!</h1>
-          <h2 style={styles.h2}>Has adquirido {adults + children + infants} { adults + children + infants === 1 ? 'pasaje' : 'pasajes'} {this.props.selectedFlights.arrival_flight ? 'ida y vuelta' : ''} con destino a {this.props.selectedFlights.arrival_flight ? this.props.selectedFlights.arrival_flight.arrivalCity.name : this.props.selectedFlights.departure_flight.arrivalCity.name }. <br/> Esperamos que disfrutes tu viaje.</h2>
+          <h2 style={styles.h2}>Ha adquirido {adults + children + infants} { adults + children + infants === 1 ? 'pasaje' : 'pasajes'} {this.props.selectedFlights.arrival_flight ? 'ida y vuelta' : ''} con destino a {this.props.selectedFlights.arrival_flight ? this.props.selectedFlights.arrival_flight.arrivalCity.name : this.props.selectedFlights.departure_flight.arrivalCity.name }. <br/> Esperamos que disfrute su viaje.</h2>
         </div>
 
         { this.props.selectedFlights.arrival_flight ? <BoardingPass style={{ marginTop: 10 }} flight={this.props.selectedFlights.arrival_flight} /> : null }
         <BoardingPass style={{ marginTop: 20 }} flight={this.props.selectedFlights.departure_flight}/>
 
         <Link to="/">
-          <button style={styles.button}>DESCUBRÍ NUEVOS DESTINOS</button>
+          <button style={styles.button}>DESCUBRA NUEVOS DESTINOS</button>
         </Link>
       </div>
     );
