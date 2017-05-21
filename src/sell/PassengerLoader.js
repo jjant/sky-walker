@@ -64,7 +64,7 @@ class PassengerLoader extends Component {
     });
 
     const hasBadAges = Object.keys(ages).find((field) => ages[field] != this.props.flightsParams[field]);
-    if (hasBadAges) return Alert.error('Las edades de los pasajeros cargados, no se corresponde con la de los pasajes que se quieren sacar. Compruebe la cantidad de ' + langMap[hasBadAges] + ' que cargó.')
+    if (hasBadAges) return Alert.error('Las edades de los pasajeros cargados no se corresponde con la de los pasajes elegidos. Compruebe los ' + langMap[hasBadAges] + ', que no se corresponden.')
 
     this.props.dispatch(submitPassengers(this.props.passengers));
 
