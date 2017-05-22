@@ -29,6 +29,7 @@ const styles = {
   },
   priceDetail: {
     fontSize: '10px',
+    padding: '0 10px',
     color: Colors.white,
   },
   description: {

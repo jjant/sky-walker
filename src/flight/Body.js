@@ -13,9 +13,9 @@ const Body = ({ airline, departureTime, arrivalTime, flightMode }) => (
       <p style={styles.airlineName}>{airline.name}</p>
     </div>
     <div style={styles.flightInformation}>
-      <p>{formatTime(departureTime)}</p>
+      <p><span style={{ fontSize: 10, verticalAlign: 'middle', display: 'inline-block' }}>SALIDA</span> <span style={{ fontWeight: 900, verticalAlign: 'middle', display: 'inline-block' }}>{formatTime(departureTime)}</span></p>
       <p style={styles.flightMode}>Directo</p>
-      <p>{formatTime(arrivalTime)}</p>
+      <p><span style={{ fontSize: 10, verticalAlign: 'middle', display: 'inline-block' }}>LLEGADA</span> <span style={{ fontWeight: 900, verticalAlign: 'middle', display: 'inline-block' }}>{formatTime(arrivalTime)}</span></p>
     </div>
   </div>
 );
@@ -33,7 +33,6 @@ const styles = {
     justifyContent: 'space-around',
   },
   airlineName: {
-    height: '15px',
   },
   flightInformation: {
     flex: '1',
