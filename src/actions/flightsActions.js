@@ -12,7 +12,7 @@ export const actions = {
 };
 
 export function fetchFlights(flightParams) {
-  const request = api.getOneWayFlights(flightParams);
+  const request = api.getOneWayFlights(flightParams, {page_size: 1000});
 
   return (dispatch) => {
     dispatch(fetchFlightsInProgress());

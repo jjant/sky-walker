@@ -5,9 +5,15 @@ import SortBar from './SortBar'
 import SearchBar from './SearchBar';
 import SearchSpinner from './SearchSpinner';
 import { fetchFlights } from '../actions/flightsActions';
-
+import ReactPaginate from 'react-paginate';
 
 class Search extends Component {
+  constructor(props) {
+    super(props);
+    this.pageSize = 3
+    this.state = {currentFlights: this.props.flights.slice(0, this.pageSize), page: 0};
+  }
+
   componentWillMount() {
     this.props.dispatch(fetchFlights(this.props.flightParams));
   }
@@ -22,11 +28,21 @@ class Search extends Component {
     return oneWay;
   }
 
-  renderFlightList() {
+  renderFlightList(flights) {
     if (this.props.fetching || !this.props.flights)
       return <SearchSpinner />;
-    return <FlightList flights={this.props.flights} airlines={this.props.airlines} />;
+    return <FlightList flights={flights || this.props.flights} airlines={this.props.airlines} />;
   }
+
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps.flights)
+    this.setState({ currentFlights: nextProps.flights.slice(this.state.page * this.pageSize, (this.state.page * this.pageSize) + this.pageSize), page: this.state.page }) 
+  }
+
+  handlePageClick = (data) => {
+    let selected = data.selected;
+    this.setState({ currentFlights: this.props.flights.slice(selected * this.pageSize, selected * this.pageSize + this.pageSize), page: selected });
+  };
 
   render() {
     return (
@@ -37,7 +53,18 @@ class Search extends Component {
         </div>
         <div style={styles.flights}>
           {/* <SearchBar /> */}
-          {this.renderFlightList()}
+          {this.renderFlightList(this.state.currentFlights)}
+          { this.props.fetching || !this.props.flights ? null : <ReactPaginate previousLabel={"Anterior"}
+                       nextLabel={"Siguiente"}
+                       breakLabel={<a href="">...</a>}
+                       breakClassName={"break-me"}
+                       pageCount={Math.ceil(this.props.flights.length / this.pageSize)}
+                       marginPagesDisplayed={2}
+                       pageRangeDisplayed={5}
+                       onPageChange={this.handlePageClick}
+                       containerClassName={"pagination"}
+                       subContainerClassName={"pages pagination"}
+                       activeClassName={"pagination-active"} /> }
         </div>
       </div>
     );
@@ -54,9 +81,10 @@ const styles = {
   },
   flights: {
     display: 'flex',
+    flexDirection: 'column',
     width: '100%',
     maxWidth: '1300px',
-    justifyContent: 'center',
+    alignItems: 'center',
   },
   topBar: {
     display: 'flex',

@@ -36,13 +36,13 @@ const api = {
   },
   getCities(requiredParams, optionalParams = {}) {
     const url = `${geoUrl}getcities`;
-    const params = {...requiredParams, ...optionalParams, pageSize: 1000 };
+    const params = {...requiredParams, ...optionalParams, page_size: 1000 };
     return fetch(urlForQuery(url, params))
             .then(resp => resp.json())
   },
   getAirports(requiredParams, optionalParams = {}) {
     const url = `${geoUrl}getairports`;
-    const params = {...requiredParams, ...optionalParams, pageSize: 1000 };
+    const params = {...requiredParams, ...optionalParams, page_size: 1000 };
     return fetch(urlForQuery(url, params))
             .then(resp => resp.json())
   },
