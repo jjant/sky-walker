@@ -36,7 +36,13 @@ const api = {
   },
   getCities(requiredParams, optionalParams = {}) {
     const url = `${geoUrl}getcities`;
-    const params = {...requiredParams, ...optionalParams};
+    const params = {...requiredParams, ...optionalParams, pageSize: 1000 };
+    return fetch(urlForQuery(url, params))
+            .then(resp => resp.json())
+  },
+  getAirports(requiredParams, optionalParams = {}) {
+    const url = `${geoUrl}getairports`;
+    const params = {...requiredParams, ...optionalParams, pageSize: 1000 };
     return fetch(urlForQuery(url, params))
             .then(resp => resp.json())
   },
@@ -63,11 +69,6 @@ const api = {
     const params = {...requiredParams, ...optionalParams};
     return fetch(urlForQuery(url, params))
             .then(resp => resp.json())
-  },
-  getCities() {
-    const url = `http://hci.it.itba.edu.ar/v1/api/geo.groovy?method=getcities`;
-    const params = { pageSize: 1000 };
-    return fetch(urlForQuery(url, params)).then(resp => resp.json());
   },
   getAirlines() {
     const url = `http://hci.it.itba.edu.ar/v1/api/misc.groovy?method=getairlines`;

@@ -24,6 +24,11 @@ class CitySelect extends Component {
        .then(resp => resp.cities)
        .then(cities => cities.map((city) => ({ value: city.id, label: city.name})))
        .then(cities => this.setState({ options: cities}));
+
+    api.getAirports()
+        .then(resp => resp.airports)
+        .then(airports => airports.map((airport) => ({ value: `${airport.id}`, label: `(${airport.id}) ${airport.description}`})))
+        .then(airports => this.setState({ options: this.state.options.concat(airports)}));
   }
 
   updateValue(newValue) {
