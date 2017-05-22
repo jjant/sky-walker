@@ -13,7 +13,7 @@ const NoFlights = () => (
     <h3 style={styles.h3}>No encontramos vuelos disponibles hacia su destino en esta fecha.</h3>
     <h3 style={styles.h3}>Cambie la fecha para encontrar nuevos viajes.</h3>
     <Link to='/'>
-      <PinkButton style={{marginTop: 20}}>CAMBIAR FECHA</PinkButton>
+      <PinkButton style={{marginTop: 20}}>CAMBIAR VUELO</PinkButton>
     </Link>
   </div>
 );

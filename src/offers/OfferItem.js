@@ -25,7 +25,7 @@ export default class OfferItem extends React.Component {
         <img className='offer-item' src={image} onLoad={this._onLoad} style={styles.image}/>
         <div style={styles.overlay}></div>
         <h1 style={styles.text}>{ offer.city.name }{ offer.country.id === 'AR' ? ', Argentina' : "" }</h1>
-        <h2 style={styles.price}> A solo U$D{offer.price}</h2>
+        <h2 style={styles.price}> A solo U$D {offer.price}</h2>
       </div>
     );
   }

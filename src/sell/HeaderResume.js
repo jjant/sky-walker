@@ -34,7 +34,7 @@ class HeaderResume extends Component {
         </div>
 
         { !this.props.show ? null : <div style={styles.passengerContainer}>{ this.props.passengers.map((passenger, idx) => <span key={idx} style={{display: 'block'}}>{this.getPassengerData(passenger)}</span>) }</div> }
-        <div style={styles.totalContainer}><span style={styles.totalText}>TOTAL: U$D { goPrice + backPrice }</span></div>
+        <div style={styles.totalContainer}><span style={styles.totalText}>TOTAL: U$D { (goPrice + backPrice).toFixed(2) }</span></div>
       </div>
     );
   }
