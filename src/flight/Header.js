@@ -2,17 +2,18 @@ import React from 'react';
 import moment from 'moment';
 import Colors from '../constants/Colors';
 import planeIcon from '../../assets/plane.svg';
+import { connect } from 'react-redux';
 
 const formatCityName = (cityName) => `${cityName.split(',')[0]}`;
 
-const Header = ({ date, departureCity, departureAirport, arrivalCity, arrivalAirport }) => {
+const Header = ({ date, departureCity, departureAirport, arrivalCity, arrivalAirport, flightParams }) => {
   return <div style={styles.container}>
     <div style={styles.direction}>
       <img
         style={styles.directionImage}
         src={planeIcon}
       />
-      <span style={styles.directionItem}>IDA</span>
+      <span style={styles.directionItem}>{ flightParams.first_flight || typeof flightParams.first_flight === 'undefined' ? 'IDA' : 'VUELTA'}</span>
     </div>
     <div style={styles.flightInformation}>
       <span>{moment(date).format('DD/MM/YYYY')}</span>
@@ -28,6 +29,13 @@ const Header = ({ date, departureCity, departureAirport, arrivalCity, arrivalAir
     </div>
   </div>
 };
+
+const mapStateToProps = (state) => ({
+  flightParams: state.flights.flightParams,
+});
+
+export default connect(mapStateToProps)(Header);
+
 
 const styles = {
   container: {
@@ -79,5 +87,3 @@ const styles = {
     height: '50px',
   },
 };
-
-export default Header;

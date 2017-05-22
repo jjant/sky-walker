@@ -35,7 +35,6 @@ class Search extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.flights)
     this.setState({ currentFlights: nextProps.flights.slice(this.state.page * this.pageSize, (this.state.page * this.pageSize) + this.pageSize), page: this.state.page }) 
   }
 
