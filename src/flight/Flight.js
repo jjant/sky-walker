@@ -32,7 +32,6 @@ Flight.propTypes = {
 const styles = {
   container: {
     backgroundColor: 'white',
-    width: '800px',
     display: 'flex',
     border: '2px solid',
     borderColor: Colors.gray,

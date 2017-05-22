@@ -1,13 +1,22 @@
 import React from 'react';
 import Flight from '../flight/Flight';
+import OneWayFlight from '../flight/OneWayFlight';
+import NoFlights from '../flight/NoFlights';
 
-const renderFlights = (flights) => (
-  flights.map((flight, i) => <Flight {...flight} key={i} style={styles.children}/>)
-);
+const renderFlights = (flights, airlines) => {
+  if (!flights.length) return <NoFlights />
 
-const FlightList = ({ flights }) => (
+  return flights.map((flight) => {
+    const airline = airlines.find(airline => airline.id === flight.airlineId);
+    return (
+      <OneWayFlight flight={flight} airline={airline} key={flight.id} style={styles.children}/>
+    );
+  });
+};
+
+const FlightList = ({ flights, airlines }) => (
   <div style={styles.container}>
-    {renderFlights(flights)}
+    {renderFlights(flights, airlines)}
   </div>
 );
 

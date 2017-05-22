@@ -1,24 +1,121 @@
 .App {
   text-align: center;
+  overflow: hidden;
+  margin-bottom: 10px;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.rc-slider-track.rc-slider-track-1 {
+  background: #FF3F61;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+*::placeholder {
+  color: rgba(170, 170, 170, 0.5) !important;
+}
+
+/* Make home background responsive */
+
+@media (max-width: 1400px) {
+  .main-background-image {
+    /*width: 160% !important;*/
+  }
+}
+
+/* airbnb-dates overrides */
+
+.DateInput__display-text--focused {
+  /*background: rgba(255, 63, 97, 0.2) !important;*/
+}
+
+.DateInput {
+  text-align: left !important;
+  font-weight: normal !important;
+  font-size: 15px !important;
+  color: #AAAAAA !important;
+}
+
+.SingleDatePicker {
+  border-right: 1px solid grey;
+}
+
+.SingleDatePickerInput {
+  border: 0 !important;
+  height: 50px;
+}
+
+.DateRangePickerInput {
+  width: 270px;
+}
+
+.DateRangePickerInput > .DateInput {
+  width: 100px;
+}
+
+/* react-select overrides */
+.Select-input {
+  width: 163px;
+  height: 50px !important;
+  padding: 0 !important;
+}
+
+.Select-value {
+  line-height: 50px !important;
+}
+
+.Select-value-label {
+  display: block;
+  overflow: hidden;
+  width: 160px;
+  text-overflow: ellipsis;
+}
+.Select-multi-value-wrapper {
+  text-align: left;
+}
+
+.Select-placeholder {
+  line-height: 50px !important;
+}
+
+.Select-input > input {
+  width: 100% !important;
+  height: 50px;
+  padding: 0 !important;
+}
+
+.sell-select {
+  padding: 10px 20px;
+  border-radius: 3px;
+  height: 40px;
+  border-color: gray;
+}
+
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+}
+.pagination-active {
+  background-color: #FF3F61;
   color: white;
 }
 
-.App-intro {
-  font-size: large;
+.pagination li {
+  display: inline-block;
+  cursor: pointer;
+  min-height: 30px;
+  min-width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  margin-right: 5px;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.pagination li a {
+  outline: none;
+}
+
+.pagination li:first-child, .pagination li:last-child {
+  background: #27397A;
+  padding: 0 10px;
+  color: white;
 }

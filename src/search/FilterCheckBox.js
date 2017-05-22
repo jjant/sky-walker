@@ -1,36 +1,19 @@
 import React, { Component } from 'react';
 import Colors from '../constants/Colors';
 
-class FilterCheckBox extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { checked: true };
-  }
+const getOpacity = (checked) => ({ opacity: (checked ? 1 : 0.1) });
 
-  handleChange() {
-    this.setState(state => ({ checked: !state.checked }));
-  }
-
-  getOpacity() {
-    return { opacity: this.state.checked ? 1 : 0 };
-  }
-  render() {
-    return (
-      <div style={styles.container}>
-        <input
-          type="checkbox"
-          checked={this.state.checked}
-          readOnly
-        />
-        <label
-          style={styles.label}
-          onClick={() => this.handleChange()}
-        />
-        <div style={{...styles.after, ...this.getOpacity()}} />
-      </div>
-    );
-  }
-}
+const FilterCheckBox = ({ checked }) => (
+  <div style={styles.container}>
+    <input
+      type="checkbox"
+      checked={checked}
+      readOnly
+    />
+    <label style={styles.label} />
+    <div style={{...styles.after, ...getOpacity(checked)}} />
+  </div>
+);
 
 const styles = {
   container: {
@@ -51,7 +34,6 @@ const styles = {
     border: '1px solid #ddd',
   },
   after: {
-    opacity: '0.2',
     content: "''",
     position: 'absolute',
     width: '7px',

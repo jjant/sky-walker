@@ -4,7 +4,7 @@ import FilterCheckBox from './FilterCheckBox';
 
 const renderOptions = (options) => (
   options.map(option => (
-    <div style={styles.option}>
+    <div style={styles.option} key={option}>
       <FilterCheckBox />
       <label>{option}</label>
     </div>
@@ -22,6 +22,7 @@ const border = `1px solid ${Colors.gray}`;
 const styles = {
   container: {
     textAlign: 'left',
+    marginBottom: '30px',
   },
   header: {
     color: Colors.blue,
